@@ -1,0 +1,75 @@
+
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <title>kakao</title>
+    <script type="text/javascript"
+            src="https://code.jquery.com/jquery-1.12.4.min.js"></script>
+    <script type="text/javascript"
+            src="https://cdn.iamport.kr/js/iamport.payment-1.1.5.js"></script>
+</head>
+<body>
+<script th:inline="javascript">
+
+
+    $(function(){
+        var IMP = window.IMP;
+        IMP.init('imp76771008');
+        var payMoney = [[${payMoney}]];
+        var money = parseInt(payMoney);
+
+
+        // console.log(money);
+
+        IMP.request_pay({
+            pg: 'kakaopay',
+            merchant_uid: 'merchant_' + new Date().getTime(),
+            name: '주문명 : 2조쵝오',
+            amount: money,
+            buyer_email: 'iamport@siot.do',
+            buyer_name: '구매자이름',
+            buyer_tel: '010-1234-5678',
+            buyer_addr: '서울시 강남구 역삼로',
+            buyer_postcode: '123-456'
+        }, function (rsp) {
+            console.log(rsp);
+            if (rsp.success) {
+                var msg = '결제가 완료되었습니다.';
+                msg += '고유ID : ' + rsp.imp_uid;
+                msg += '상점 거래ID : ' + rsp.merchant_uid;
+                msg += '결제 금액 : ' + rsp.paid_amount;
+                msg += '카드 승인번호 : ' + rsp.apply_num;
+                $.ajax({
+                    type: "POST",
+                    url: "/payKakao", //충전 금액값을 보낼 url 설정
+                    data: {
+                        "amount" : money,
+                        "uid" : rsp.imp_uid
+                    },
+                    success:function(resp){
+                        alert(resp);
+                        setTimeout(function() {
+                            document.location.href="/complete.do";
+                        }, 250);
+                         //alert창 확인 후 이동할 url 설정
+                    }
+                });
+            } else {
+                var msg = '결제에 실패하였습니다.';
+                msg += '에러내용 : ' + rsp.error_msg;
+
+                alert(msg);
+                setTimeout(function() {
+                    document.location.href="/ticket.do";
+                }, 250);
+
+            }
+
+        });
+
+    });
+</script>
+
+</body>
+</html>

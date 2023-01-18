@@ -1,0 +1,131 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+  <meta charset="UTF-8">
+  <title>Title</title>
+  <style>
+    .btn_area {
+      font-family: '나눔고딕',NanumGothic,'돋움',Dotum,Helvetica,AppleSDGothicNeo-Medium,AppleGothic,sans-serif;
+      font-size: 12px;
+      list-style: none;
+      text-align: right;
+      clear: both;
+    }
+
+    ._sympathyButton {
+      font-family: '나눔고딕',NanumGothic,'돋움',Dotum,Helvetica,AppleSDGothicNeo-Medium,AppleGothic,sans-serif;
+      font-size: 12px;
+      list-style: none;
+      text-align: right;
+      margin: 0;
+      text-decoration: none;
+      color: #000000;
+      display: inline-block;
+      overflow: hidden;
+      padding: 0 8px;
+      height: 21px;
+      line-height: 21px;
+      border-radius: 2px;
+      border: solid 1px #e5e5e5;
+      background-color: #fff;
+    }
+
+    ._notSympathyButton {
+      font-family: '나눔고딕',NanumGothic,'돋움',Dotum,Helvetica,AppleSDGothicNeo-Medium,AppleGothic,sans-serif;
+      font-size: 12px;
+      list-style: none;
+      text-align: right;
+      margin: 0;
+      text-decoration: none;
+      color: #000000;
+      display: inline-block;
+      overflow: hidden;
+      padding: 0 8px;
+      height: 21px;
+      line-height: 21px;
+      border-radius: 2px;
+      border: solid 1px #e5e5e5;
+      background-color: #fff;
+      margin-left: 2px;
+    }
+  </style>
+</head>
+<body>
+
+<div class="col-detail">
+  <div class="tit-mycgv">
+    <h3>내가 쓴 평점</h3>
+    <script type="text/javascript">
+      //<![CDATA[
+      (function ($) {
+        $(function () {
+          $('#go_edit_page').on('click', function () {
+            var win = window.open("/user/popup/edit-profile.aspx", "profile", "left=0,top=o,width=445,height=440,toolbar=no,scrollbars=no");
+            win.focus();
+            return false;
+          });
+        });
+      })(jQuery);
+      //]]>
+    </script>
+  </div>
+  <div class="warp-my-reviewlist" th:if="${commentList != null}" th:each="comment, i:${commentList}">
+    <ul class="point_col1">
+      <li>
+        <div class="sect-viw-rated">
+          <div class="box-image">
+            <a title="영화 상세 이동" href="/movies/detail-view/?midx=80894"></a>
+          </div>
+          <div class="box-contents">
+            <div class="title">
+              <strong th:if="${movieList != null}" th:text="${movieList[i.index].movieNm}">너의 결혼식</strong>
+            </div>
+            <ul class="writerinfo">
+              <li class="mylist_user_id" id="eggArea_80894" th:if="${memberDTO != null}" th:text="${memberDTO.userId}">
+                <span id="eggSpan_80894" class="egg-icon good"></span>ki**e021</li>
+              <li id="liRegistDate80894" th:text="${comment.indate}">2018.08.23</li>
+              <li><button type="button" th:myName="${comment.id}" class="btn-delete btn-del" midx="80894" id="deleteComment" th:onclick="deleteComment(this.getAttribute('myName'))">삭제</button></li>
+            </ul>
+            <p id="pCommentText80894" th:text="${comment.content}">박보영은 예쁘다. 영화는 클리셰..</p>
+            <div class="btn_area">
+              <span class="_sympathyButton">
+                <span class="ico_up"></span>
+                <span class="blind">좋아요</span>
+                <strong class="sympathy_18595944" th:text="${comment.good}">11291</strong>
+              </span>
+              <span class="_notSympathyButton">
+                <span class="ico_down"></span>
+                <span class="blind">싫어요</span>
+                <strong class="notSympathy_18595944" th:text="${comment.bad}">848</strong>
+              </span>
+            </div>
+          </div>
+        </div>
+      </li>
+    </ul>
+    <br>
+    <hr style="color:#000000; !important; display: block !important; width: 100% !important;"/>
+  </div>
+  <div class="paging">
+  </div>
+</div>
+<script src="https://code.jquery.com/jquery-3.5.1.js"></script>
+<script>
+
+  function deleteComment(id) {
+    // var id = $("#deleteComment").val();
+    if(confirm("삭제 콜?"))
+      $.ajax({
+        url: '/member/user-comment/'+id,
+        type: 'DELETE',
+        success: function(resp) {
+          console.log(id);
+          if (resp == 'success') {
+            location.reload();
+          }
+        }
+      });
+  }
+</script>
+</body>
+</html>

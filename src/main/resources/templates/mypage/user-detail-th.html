@@ -1,0 +1,333 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+  <meta charset="UTF-8">
+  <title>Title</title>
+  <script>
+    function name_check() {
+      var url = "/member/user-edit/name";
+      var name = "updateName";
+      var option = "width = 500, height = 500, top = 100, left = 200, location = no"
+      window.open(url, name, option);
+    }
+
+    function password_check() {
+      var url = "/member/user-edit/password";
+      var name = "updatePassword";
+      var option = "width = 500, height = 500, top = 100, left = 200, location = no"
+      window.open(url, name, option);
+    }
+
+  </script>
+</head>
+<body>
+<div class="col-detail" id="mycgv_contents">
+
+  <input type="hidden" id="isIPIN" name="isIPIN" value="cRvn64WNlT7nLXW2sDuv1AW/7+LIEt8lKQkbgf2Kds8CV5wv6llk6x2UPXzFNdAj36ady/rIiLevXTRLjPNkPg==">
+  <div class="tit-mycgv">
+    <h3>나의 정보</h3>
+  </div>
+  <div class="tit-mycgv">
+    <h4>나의 프로필/CGV정보</h4>
+  </div>
+  <!--1-->
+
+  <form name="aspnetForm" method="post" action="./edit-myinfo-myprofile.aspx" id="aspnetForm" enctype="multipart/form-data" novalidate="novalidate">
+    <div>
+      <input type="hidden" name="__VIEWSTATE" id="__VIEWSTATE" value="/wEPDwULLTE5NDY1OTc2MjJkZGXGZF9rPaBjXwH1HbdmUHs5/x2S">
+    </div>
+
+    <div>
+      <input type="hidden" name="__VIEWSTATEGENERATOR" id="__VIEWSTATEGENERATOR" value="5FA425E8">
+    </div>
+
+    <div class="tbl-form">
+      <table summary="나의프로필정보 이름,아이디, 닉네임,프로필이미지 표기">
+        <caption>나의프로필정보</caption>
+        <colgroup>
+          <col width="19%">
+          <col width="*">
+        </colgroup>
+        <tbody>
+
+        <tr>
+          <th scope="row">이름</th>
+          <td><strong th:if="${memberDTO != null}" th:text="${memberDTO.getName()}">이름</strong></td>
+          <td type="text" id="nameUpdate">&nbsp;<a href="javascript:name_check()">[변경하기]</a></td>
+        </tr>
+
+        <tr>
+          <th scope="row">아이디</th>
+          <td><span th:if="${memberDTO != null}" th:text="${memberDTO.getUserId()}">아이디</span></td>
+          <td></td>
+        </tr>
+
+        <tr>
+          <th scope="row">비밀번호</th>
+          <td><span th:if="${memberDTO != null}" th:hidden="${memberDTO.getPassword()}">비밀번호</span></td>
+          <td type="text" id="passwordUpdate">&nbsp;<a href="javascript:password_check()">[변경하기]</a></td>
+        </tr>
+
+        <tr>
+          <th scope="row">닉네임</th>
+          <td><span th:if="${memberDTO != null}" th:text="${memberDTO.getNickname()}">닉네임</span></td>
+          <td></td>
+        </tr>
+
+        <tr>
+          <th scope="row">주소</th>
+          <td><span th:if="${memberDTO != null}" th:text="${memberDTO.getAddress()}">주소</span></td>
+          <td></td>
+        </tr>
+
+        <tr>
+          <th scope="row">상세주소</th>
+          <td><span th:if="${memberDTO != null}" th:text="${memberDTO.getAddressDetail ()}">상세주소</span></td>
+          <td></td>
+        </tr>
+
+        <tr>
+          <th scope="row">이메일</th>
+          <td><span th:if="${memberDTO != null}" th:text="${memberDTO.getEmail()}">이메일</span></td>
+          <td></td>
+        </tr>
+
+        <tr>
+          <th scope="row">전화번호</th>
+          <td><span th:if="${memberDTO != null}" th:text="${memberDTO.getPhone()}">전화번호</span></td>
+          <td></td>
+        </tr>
+
+        <tr>
+          <th scope="row">성별</th>
+          <td><span th:if="${memberDTO != null}" th:text="${memberDTO.getGender()}">성별</span></td>
+          <td></td>
+        </tr>
+
+        <tr>
+          <th scope="row">소셜네트워크</th>
+          <td><span th:if="${memberDTO != null}" th:text="${memberDTO.getSns()}">소셜네트워크</span></td>
+          <td></td>
+        </tr>
+
+        <tr>
+          <th scope="row">생일</th>
+          <td><span th:if="${memberDTO != null}" th:text="${memberDTO.getBirth()}">생일</span></td>
+          <td></td>
+        </tr>
+
+        <tr>
+          <th scope="row">가입일시</th>
+          <td><span th:if="${memberDTO != null}" th:text="${memberDTO.getIndate()}">가입일시</span></td>
+          <td></td>
+        </tr>
+        </tbody>
+      </table>
+    </div>
+  </form>
+
+
+
+
+
+
+
+  <script type="text/javascript" src="https://img.cgv.co.kr/R2014//js/system/crypto.js"></script>
+  <script type="text/javascript">
+    //<![CDATA[
+    (function ($) {
+      $(function () {
+
+        //######################## SSL관련 hidden작업  (s) #######################
+
+
+
+
+        $('#set_profile').on('click', function () {
+          var rd_agree_profileInfo = $("input[name='rd_agree_profileInfo']:checked").val();
+
+          var msg = "동의 안함 설정 시, ";
+          var itemNoCnt = 0;
+
+          if (rd_agree_profileInfo == "N") {
+            msg = msg + "[닉네임] [프로필 사진]";
+            itemNoCnt++;
+          }
+          msg = msg + " 를 이용하실 수 없습니다.";
+
+          if (itemNoCnt > 0) {
+            alert(msg);
+          }
+
+
+          if (rd_agree_profileInfo == "Y") {
+            if ($('#nick_name').val() != '' && $('#old_nick_name').val() != $('#nick_name').val() && $('#check_duplication').attr('data') != 1) {
+              alert('닉네임 중복확인 해주세요.');
+              $('#check_duplication').focus();
+              return false;
+            }
+          }
+
+        });
+
+
+        //######################## SSL관련 hidden작업  (e) #######################
+
+
+
+
+
+
+        $('#delete_image').on('click', function () {
+          if (!confirm('설정된 프로필 이미지를 삭제 하시겠습니까?'))
+            return;
+
+          $('#img_userprofileimage').attr('src', '');
+          $('#user_small_image').val('');
+          $('#user_image').val('');
+          $('#delete_image').remove();
+        });
+
+
+
+        $('#check_duplication').on('click', function () {
+          var _this = $(this);
+          var nickNameObj = $('#nick_name');
+
+          if (nickNameObj.val() == '') {
+            alert('닉네임을 정상적으로 입력해주세요.');
+            return nickNameObj.focus();
+          }
+
+          var url = '/common/ajax/user.aspx/CheckDuplicationByNickName';
+          var data = { 'nickName': nickNameObj.val() };
+
+          var callback = function (result) {
+            if (result == null || result.resultCode == null) return;
+            var resultCode = result.resultCode;
+
+            if (resultCode == "") {
+              alert("오류가 발생하였습니다.");
+              _this.attr('data', 0);
+            }
+            else if (resultCode != "0") {
+              alert('입력하신 닉네임 정보는 이미 사용중 입니다.\n다른 닉네임 정보를 입력해 주세요.');
+              nickNameObj.focus();
+              _this.attr('data', 0);
+            }
+            else {
+              alert('입력하신 닉네임 정보는 사용가능한 정보 입니다.');
+              _this.attr('data', 1);
+            }
+          };
+
+          app.ajax().set({ dataType: 'json', url: url, data: JSON.stringify(data), contentType: "application/json; charset=utf-8", successHandler: callback });
+        });
+
+        $('.sect-profile-img > .box-contents > input[type=radio]').on('click', function () {
+          var profileImageCode = $(this).data('code');
+          var objProfileImage = $('#profile_upload_file');
+
+          if (profileImageCode != "user") {
+            objProfileImage.attr('disabled', 'disabled');
+
+            var profileImageValue = $(this).val();
+            var winPop;
+          }
+          else {
+            objProfileImage.removeAttr('disabled');
+          }
+
+          objProfileImage.attr('src', $(this).val());
+        });
+
+        $("input[name=rd_agree_profileInfo]").on('click', function () {
+          //닉네임
+          if ($('input:radio[name="rd_agree_profileInfo"]:checked').val() == "Y") {
+            $('#nick_name').attr("disabled", false);
+          } else if ($('input:radio[name="rd_agree_profileInfo"]:checked').val() == "N") {
+            $('#nick_name').attr("disabled", true);
+            $('#nick_name').val('');
+
+            $('#img_userprofileimage').attr('src', '');
+            $('#user_small_image').val('');
+            $('#user_image').val('');
+            $('#delete_image').remove();
+          }
+        });
+
+        fnLoding();
+        function fnLoding() {
+
+          /* 1번 탭 S */
+          if ($('input:radio[name="rd_agree_profileInfo"]:checked').val() == "N") {
+            $('#nick_name').attr("disabled", true);
+          }
+          /* 1번 탭 E */
+
+
+
+        }
+
+
+        function getCookie(cookieName) {
+          var nameOfcookie = name + "=";
+          var x = 0;
+          while (x <= document.cookie.length) {
+            var y = (x + nameOfcookie.length);
+            if (document.cookie.substring(x, y) == nameOfcookie) {
+              if ((endOfcookie = document.cookie.indexOf(";", y)) == -1)
+                endOfcookie = document.cookie.length;
+              return unescape(document.cookie.substring(y, endOfcookie));
+            }
+            x = document.cookie.indexOf(" ", x) + 1;
+            if (x == 0)
+              break;
+          }
+          return "";
+        }
+      });
+    })(jQuery);
+    //]]>
+  </script>
+  <script type="text/javascript">
+    function setProfileImage(snsType, imgUrl) {
+      $('#img_userprofileimage').attr('src', imgUrl);
+    }
+
+  </script>
+
+  <!-- c_tab_re 제어 -->
+  <script type="text/javascript">
+    $(function () {
+      function cTabControll() {
+        $('.c_tab_re').each(function () {
+          var onTit = $(this).find('> li.on > a').attr('title');
+          $(this).find('> li > a').click(function () {
+            var btn = $(this).parent();
+            var myNum = btn.index();
+            var myConts = $(this).parents('.c_tab_wrap_re').nextUntil('.c_tab_wrap_re', '.c_tab_recont');
+            var myCont = myConts.eq(myNum);
+
+            btn.siblings().removeClass('on');
+            btn.siblings().find('> a').removeAttr('title');
+            btn.addClass('on');
+            btn.find('> a').attr('title', onTit);
+
+            myConts.removeClass('on');
+            myCont.addClass('on');
+
+            return false;
+
+          })
+
+        })
+      } cTabControll();
+    });
+  </script>
+  <script type="text/javascript">
+  </script>
+
+</div>
+</body>
+</html>

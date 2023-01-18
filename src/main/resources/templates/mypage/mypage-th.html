@@ -1,0 +1,151 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<div class="col-detail" id="mycgv_contents">
+    <div class="tit-mycgv">
+        <h3>최근 예매내역</h3>
+        <p><em th:if="${orderList != null}" th:text="${orderList.size()}">총 0건</em><a href="/member/user-order" th:if="${orderList != null}">예매내역 더보기</a></p>
+        <p><em th:unless="${orderList != null}">총 0건</em><a href="/member/user-order" th:unless="${orderList != null}">예매내역 더보기</a></p>
+        <span>예매번호로만 티켓을 찾을 수 있으니 반드시 확인 부탁드립니다.</span>
+    </div>
+    <form name="aspnetForm" method="post" action="./" id="aspnetForm" novalidate="novalidate">
+        <div>
+            <input type="hidden" name="__EVENTTARGET" id="__EVENTTARGET" value="">
+            <input type="hidden" name="__EVENTARGUMENT" id="__EVENTARGUMENT" value="">
+            <input type="hidden" name="__VIEWSTATE" id="__VIEWSTATE" value="/wEPDwUKMTc0NzIwMTk3M2RkGpTZbHfO8pvW/Ta9En5loRX6E2E=">
+        </div>
+        <div>
+            <input type="hidden" name="__VIEWSTATEGENERATOR" id="__VIEWSTATEGENERATOR" value="F268F2D4">
+            <input type="hidden" name="__EVENTVALIDATION" id="__EVENTVALIDATION" value="/wEdAANOZtRado8flmBd6Juf8OumAAaiyC+ogOIlg3pscMtiP2lKUwCIH8TI/sjrTPJzW37qSeqQYBLB9CRMYU4y53rNrIwxzA==">
+        </div>
+        <!-- MY 예매내역 -->
+        <input type="hidden" id="hidCancelReserveNo" name="hidCancelReserveNo">
+        <div class="sect-base-booking">
+            <div class="box-polaroid">
+                <div class="box-inner">
+                    <div class="lst-item">
+                        <div class="box-number">
+                            <em>예매번호</em>
+                            <strong th:if="${recentOrder != null}" th:text="${recentOrder.id}">0056-0102-4966-250</strong>
+                            <strong th:unless="${recentOrder != null}" ></strong>
+                            <span th:if="${recentOrder != null}" th:text="${recentOrder.indate}">(2023.01.02)</span>
+                            <span th:unless="${recentOrder != null}" ></span>
+                        </div>
+                        <div class="box-image">
+                            <a th:if="${recentMovieImg != null}" th:href="'/movie/' + ${recentMovieImg.movieCd}">
+                                <span class="thumb-image">
+                                    <img th:if="${recentMovieImg != null}" th:src="${recentMovieImg.movieImg}"  alt="아바타-물의 길(3D) 포스터" onerror="errorImage(this)">
+                                    <img th:unless="${recentMovieImg != null}">
+                                </span>
+                            </a>
+                        </div>
+                        <div class="box-contents has_not_storeitem">
+                            <dl>
+                                <dt>
+                                    <em th:if="${recentMovie != null}" th:text="${recentMovie.movieNm}">아바타-물의 길(3D)</em>
+                                    <em th:unless="${recentMovie != null}"></em>
+                                </dt>
+                                <dd>
+                                    <em>관람극장</em>
+                                    <strong th:if="${recentTheater != null}" th:text="${recentTheater.selectedTheater}">CGV 강남</strong>
+                                    <strong th:unless="${recentTheater != null}" th:text="${recentTheater}"></strong>
+                                </dd>
+                                <dd>
+                                    <em>관람일시</em>
+                                    <strong th:if="${recentOrder != null}" th:text="${recentOrder.getScreenDate()}">2023.01.08(일) 20:00</strong>
+                                    <strong th:unless="${recentOrder != null}" ></strong>
+                                </dd>
+                                <dd>
+                                    <em>관람좌석</em>
+                                    <strong th:if="${recentOrder != null}" th:text="${recentOrder.getSeat()}">H 14</strong>
+                                    <strong th:unless="${recentOrder != null}"></strong>
+                                </dd>
+                            </dl>
+                        </div>
+                        <div class="price-n-btns">
+                            <div class="bd-wrap">
+                                <dl>
+                                    <dt>총 결제금액</dt>
+                                    <dd>
+                                        <strong class="txt-lightblue" th:if="${recentOrder != null}" th:text="${recentOrder.getTotalPrice()} + '원'">17,000원</strong>
+                                        <strong class="txt-lightblue" th:unless="${recentOrder != null}"></strong>
+                                    </dd>
+                                </dl>
+                                <div class="set-btn">
+                                    <input type="hidden" class="reserve-no" name="reserve-no" value="Bj2L6yI8Pj08Hr9n6+k4EEF/MJKQmTcD2CKQGs+A4WI=">
+                                    <button type="button" title="새창" class="round inblack sendsmspopup" onclick="submitMail()" th:if="${recentOrder != null}"><span th:if="${recentOrder != null}">문자보내기</span></button>
+                                    <button type="button" data-status="94" class="round black cancel" onclick="noshowYN()" th:if="${recentOrder != null}"><span th:if="${recentOrder != null}">예매취소</span></button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </form>
+    <div class="sect-mycgv-part">
+        <div class="box-polaroid type1">
+            <div class="box-inner">
+                <div class="tit-mycgv">
+                    <h3>나의 댓글 목록</h3>
+                    <p><em th:if="${commentList != null}" th:text="${commentList.size()} + '건'">0건</em> <a href="/member/user-comment" th:if="${commentList != null}">MY 댓글목록 더보기</a></p>
+                    <p><em th:unless="${commentList != null}">0건</em> <a href="/member/user-comment" th:unless="${commentList != null}">MY 댓글목록 더보기</a></p>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<script src="https://code.jquery.com/jquery-3.5.1.js"></script>
+<script th:inline="javascript">
+    function submitMail() {
+        let mail = [[ ${recentOrder} ]];
+        let movie = [[ ${recentMovie} ]];
+        let theater = [[ ${recentTheater} ]];
+
+        if(confirm("예매내역 전달함?"));
+
+        $.ajax({
+            url:'/send',
+            type:'GET',
+            data: {
+                'id': mail.id,
+                'screenDate': mail.screenDate,
+                'seat': mail.seat,
+                'ticketCount': mail.ticketCount,
+                'totalPrice': mail.totalPrice,
+                'movieNm': movie.movieNm,
+                'selectedTheater': theater.selectedTheater
+            },
+            success: function (data) {
+                console.log(data);
+                location.reload();
+            }
+        })
+    }
+
+    function noshowYN() {
+        let mail = [[ ${recentOrder} ]];
+
+        if (confirm("예매 취소함?"));
+
+        $.ajax({
+            url: '/ticket',
+            type: 'PUT',
+            data: {'id':mail.id},
+            success: function (data) {
+                if (data == 'success') {
+                    alert("예매를 취소했습니다.")
+                    location.reload();
+                }else{
+                    alert("예매 취소를 실패 하였습니다.");
+                }
+            }
+        })
+    }
+</script>
+</body>
+</html>

@@ -19,12 +19,23 @@ repositories {
 }
 
 dependencies {
+
 	implementation 'org.springframework.boot:spring-boot-starter-aop' // AOP
 	implementation 'org.mybatis.spring.boot:mybatis-spring-boot-starter:2.2.2'
 	runtimeOnly 'mysql:mysql-connector-java' // MySQL
 	implementation 'org.springframework.boot:spring-boot-starter-web' // Spring Web
 	implementation 'org.springframework.boot:spring-boot-starter-thymeleaf' // thymeleaf
 	testImplementation 'org.springframework.boot:spring-boot-starter-test'
+
+
+	// https://mvnrepository.com/artifact/org.springframework.boot/spring-boot-starter-validation
+	implementation 'org.springframework.boot:spring-boot-starter-validation'
+
+	//스프링 시큐리티
+	implementation 'org.springframework.boot:spring-boot-starter-oauth2-client'
+	implementation 'org.springframework.boot:spring-boot-starter-security'
+	developmentOnly 'org.springframework.boot:spring-boot-devtools'
+
 
 	// localhost:8080/swagger-ui.html
 	implementation group: 'io.springfox', name: 'springfox-swagger2', version: '2.9.2'
@@ -35,6 +46,14 @@ dependencies {
 	// Lombok
 	compileOnly 'org.projectlombok:lombok'
 	annotationProcessor 'org.projectlombok:lombok'
+
+	implementation files('libs/kobis-opcl-rest-v1.0.jar')	//영화진흥위원회 open api
+	implementation 'com.googlecode.json-simple:json-simple:1.1.1'	// json 데이터 처리
+
+	implementation group: 'org.apache.tomcat', name: 'tomcat-jasper', version: '9.0.1'
+	implementation group: 'javax.servlet', name: 'jstl', version: '1.2'
+	implementation group: 'com.google.code.gson', name: 'gson', version: '2.9.0'
+	implementation 'org.jsoup:jsoup:1.15.3'
 }
 
 tasks.named('test') {

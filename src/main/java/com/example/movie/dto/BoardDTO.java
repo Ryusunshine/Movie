@@ -11,10 +11,11 @@ import lombok.Setter;
 @Setter
 public class BoardDTO {
 
-    private Long id;
-    private String userId;
-    private String title;
-    private String content;
-    private String indate;
+    private Long id;            // pk
+    private Long member_id;     // member 테이블의 pk
+    private String nickname;    // 닉네임
+    private String title;       // 게시글 제목
+    private String content;     // 게시글 내용
+    private String indate;      // 게시글 생성일시
 
 }

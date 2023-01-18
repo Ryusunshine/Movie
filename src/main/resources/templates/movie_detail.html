@@ -1,0 +1,585 @@
+<html xmlns:th="http://www.thymeleaf.org" xml:lang="ko" lang="ko"><head>
+
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+    <meta http-equiv="Expires" content="-1">
+    <meta http-equiv="Pragma" content="no-cache">
+    <meta http-equiv="Cache-Control" content="No-Cache">
+    <meta http-equiv="imagetoolbar" content="no">
+    <meta name="viewport" content="width=1024">
+    <meta name="keywords" content="CGV, 시지브이, 영화관, 극장, 영화, 티켓, 박스오피스, 극장, Movie, Theater, Cinema, Cgv, cgv, 예매, 상영작">
+    <meta name="description" content="CGV는 선진화된 관람문화와 최고의 서비스로 고객에게 잊을 수 없는 감동을 선사합니다. CGV홈페이지를 통해 영화 예매뿐만 아니라 그 이상의 서비스와 감동을 전달하고, 다양한 즐거움과 특별한 경험을 제공하고자 합니다.">
+    <meta property="og:site_name" content="영화 그 이상의 감동. CGV">
+    <meta id="ctl00_og_title" property="og:title" content="아바타-물의 길 | 영화 그 이상의 감동. CGV">
+
+
+    <meta id="ctl00_og_image" property="og:image" content="https://img.cgv.co.kr/Movie/Thumbnail/Poster/000086/86072/86072_185.jpg">
+    <link rel="alternate" href="http://m.cgv.co.kr">
+    <link rel="shortcut icon" href="https://img.cgv.co.kr/theater_img/favicon.ico" type="image/x-icon">
+    <title id="ctl00_headerTitle">[아바타-물의 길]&lt;영화상세 &lt; 영화 | 영화 그 이상의 감동. CGV</title>
+    <link rel="shortcut icon" type="image/x-icon" href="https://img.cgv.co.kr/R2014/images/favicon.ico">
+    <link rel="stylesheet" media="all" type="text/css" href="https://img.cgv.co.kr/R2014/css/webfont.css">
+    <link rel="stylesheet" media="all" type="text/css" href="https://img.cgv.co.kr/R2014/css/reset.css">
+    <link rel="stylesheet" media="all" type="text/css" href="https://img.cgv.co.kr/R2014/css/layout.css">
+    <link rel="stylesheet" media="all" type="text/css" href="https://img.cgv.co.kr/R2014/css/module.css?20211209">
+    <link rel="stylesheet" media="all" type="text/css" href="https://img.cgv.co.kr/R2014/css/content.css">
+    <link rel="stylesheet" media="all" type="text/css" href="https://img.cgv.co.kr/R2014/css/common.css">
+
+    <link rel="stylesheet" media="all" type="text/css" href="https://img.cgv.co.kr/R2014/css/eggupdate.css">
+    <link rel="stylesheet" media="print" type="text/css" href="https://img.cgv.co.kr/R2014/css/print.css">
+    <link rel="stylesheet" type="text/css" href="https://img.cgv.co.kr/R2014/js/jquery.ui/smoothness/jquery-ui-1.10.4.custom.min.css">
+
+    <script type="text/javascript" async="" src="http://www.googletagmanager.com/gtag/js?id=G-559DE9WSKZ&amp;l=dataLayer&amp;cx=c"></script><script type="text/javascript" async="" src="http://www.google-analytics.com/analytics.js"></script><script async="" src="//www.googletagmanager.com/gtm.js?id=GTM-NNNFR3"></script><script async="" src="//www.google-analytics.com/analytics.js"></script><script type="text/javascript" src="/common/js/extraTheaters.js"></script>
+    <script type="text/javascript" src="https://img.cgv.co.kr/R2014/js/app.config.js"></script>
+    <script type="text/javascript" src="https://img.cgv.co.kr/R2014/js/jquery-1.10.2.min.js"></script>
+    <script type="text/javascript" src="https://img.cgv.co.kr/R2014/js/jquery.plugin/jquery.tmpl.min.js"></script>
+    <script type="text/javascript" src="https://img.cgv.co.kr/R2014/js/jquery.plugin/jquery.validate.js"></script>
+    <script type="text/javascript" src="https://img.cgv.co.kr/R2014/js/jquery.plugin/jquery.paging.min.js"></script>
+    <script type="text/javascript" src="https://img.cgv.co.kr/R2014/js/jquery.ui/jquery-ui-1.10.4.custom.min.js"></script>
+    <script type="text/javascript" src="https://img.cgv.co.kr/R2014/js/jquery.utils.js"></script>
+    <script type="text/javascript" src="https://img.cgv.co.kr/R2014/js/app.utils.js"></script>
+    <script type="text/javascript" src="https://img.cgv.co.kr/R2014/js/jquery.utils.pageing.js"></script>
+    <script type="text/javascript" src="https://img.cgv.co.kr/R2014/js/app.init.js"></script>
+
+    <!--[if lte IE 9]><script type="text/javascript" src="https://img.cgv.co.kr/R2014/js/jquery.plugin/jquery.placeholder.js"></script><![endif]-->
+    <script type="text/javascript" src="https://img.cgv.co.kr/R2014/js/jquery.plugin/jquery.dotdotdot.min.js"></script>
+    <script type="text/javascript" src="https://img.cgv.co.kr/R2014/js/silverlight_link.js"></script>
+    <script src="https://img.cgv.co.kr/R2014/js/slick/slick.js" type="text/javascript" charset="utf-8"></script>
+
+    <link rel="stylesheet" media="all" type="text/css" href="https://img.cgv.co.kr/R2014/css/phototicket/phototicket.css">
+    <link rel="stylesheet" media="all" type="text/css" href="https://img.cgv.co.kr/R2014/css/slick.css">
+    <link rel="stylesheet" media="all" type="text/css" href="https://img.cgv.co.kr/R2014/css/slick-theme-custom.css">
+
+    <script type="text/javascript" src="https://img.cgv.co.kr/R2014/js/icheck/login.timer.js"></script>
+    <script src="https://img.cgv.co.kr/R2014/js/icheck/icheck.min.js" type="text/javascript" charset="utf-8"></script>
+    <link rel="stylesheet" type="text/css" href="https://img.cgv.co.kr/R2014/js/icheck/iCheck.css">
+
+    <!-- 2020.05.07 감정지수/프리에그 프로젝트 추가 -->
+    <link rel="stylesheet" media="all" type="text/css" href="https://img.cgv.co.kr/R2014/css/preegg.css">
+
+    <!-- 홈페이지 CSS 일원화로 인한 반영 20220721 -->
+    <link rel="stylesheet" type="text/css" href="https://img.cgv.co.kr/resource_pc/css/cgv.min.css">
+    <script type="text/javascript" src="https://img.cgv.co.kr/resource_pc/js/cgvUi.js"></script>
+
+    <!-- 각페이지 Header Start-->
+
+    <!--[if lte IE 8]><script language="javascript" type="text/javascript" src="https://img.cgv.co.kr/R2014/js/excanvas.min.js"></script><![endif]-->
+    <link href="https://img.cgv.co.kr/R2014/js/jquery.plugin/jquery.jqplot/jquery.jqplot.min.css" rel="stylesheet" type="text/css">
+    <script type="text/javascript" src="https://img.cgv.co.kr/R2014/js/jquery.plugin/jquery.jqplot/jquery.jqplot.min.js"></script>
+    <script type="text/javascript" src="https://img.cgv.co.kr/R2014/js/jquery.plugin/jquery.jqplot/jqplot.barRenderer.min.js"></script>
+    <script type="text/javascript" src="https://img.cgv.co.kr/R2014/js/jquery.plugin/jquery.jqplot/jqplot.pieRenderer.min.js"></script>
+    <script type="text/javascript" src="https://img.cgv.co.kr/R2014/js/jquery.plugin/jquery.jqplot/jqplot.donutRenderer.min.js"></script>
+    <script type="text/javascript" src="https://img.cgv.co.kr/R2014/js/jquery.plugin/jquery.jqplot/jqplot.categoryAxisRenderer.min.js"></script>
+    <script type="text/javascript" src="https://img.cgv.co.kr/R2014/js/jquery.plugin/jquery.jqplot/jqplot.pointLabels.min.js"></script>
+
+    <script type="text/javascript" src="https://img.cgv.co.kr/R2014/js/Chart.custom.js"></script><!-- 평점 개편 스파이더 차트 js 로딩 추가. mwpark_RR2015 -->
+
+    <!-- 2020.05.07 영화 상세 차트 js 로딩 추가 -->
+    <script type="text/javascript" src="https://img.cgv.co.kr/R2014/js/amcharts.js"></script>
+    <script type="text/javascript" src="https://img.cgv.co.kr/R2014/js/radar.js"></script>
+
+    <script type="text/javascript" src="https://img.cgv.co.kr/R2014//js/system/system.packed.js"></script></head>
+
+<style>
+    table {
+        width: 100%;
+        border-top: 1px solid #444444;
+        border-collapse: collapse;
+    }
+    th, td {
+        border-bottom: 1px solid #444444;
+        padding: 10px;
+    }
+</style>
+
+
+<body class="" style="">
+
+<div class="skipnaiv">
+    <a href="#contents" id="skipHeader">메인 컨텐츠 바로가기</a>
+</div>
+<div id="cgvwrap">
+
+
+
+    <!-- Contaniner -->
+    <div id="contaniner" class=""><!-- 벽돌 배경이미지 사용 시 class="bg-bricks" 적용 / 배경이미지가 없을 경우 class 삭제  -->
+
+
+        <!-- Contents Area -->
+        <div id="contents" class="">
+            <!-- Contents Start -->
+            <!-- 실컨텐츠 시작 -->
+            <div class="wrap-movie-detail" id="select_main">
+                <div class="sect-base-movie">
+                    <h3><strong id="movie_name"></strong>기본정보</h3>
+                    <div class="box-image">
+<!--                        <span id="movieImg_big"><a href="https://img.cgv.co.kr/Movie/Thumbnail/Poster/000086/86072/86072_1000.jpg" title="포스터 크게 보기 새창" target="_blank"></span>-->
+                        <span id="movieImg_big"></span>
+            <span class="thumb-image">
+<!--                <span id="movieImg"><img src="https://img.cgv.co.kr/Movie/Thumbnail/Poster/000086/86072/86072_320.jpg" alt="아바타-물의 길 포스터 새창" onerror="errorImage(this)"></span>-->
+                <span id="movieImg"></span>
+<!--                <span class="ico-posterdetail">포스터 크게 보기</span>-->
+
+            </span>
+                        </a>
+                    </div>
+                    <div id="movie_detail_content">
+<!--                    AJAX 로 init() 메서드 실행 시 여기에 영화 상세정보 추가됨    -->
+                        <!--
+                       <div class="box-contents">
+                        <div className="title">
+                            <strong>아바타: 물의 길</strong>
+                            <p>Avatar: The Way of Water</p>
+                        </div>
+                        <div className="score">
+                        </div>
+
+                        <div className="spec">
+                            <dl>
+                                <dt>감독 :&nbsp;</dt>
+                                <dd className="on">제임스 카메론 (James Cameron)</dd>
+                                <dt>배우 :&nbsp;</dt>
+                                <dd className="on">조 샐다나|샘 워싱턴|시고니 위버|스티븐 랭|케이트 윈슬렛|</dd>
+                                <dt>장르 :&nbsp;</dt>
+                                <dd className="on">액션/어드벤처/SF/스릴러/</dd>
+                                <dt>기본정보 :&nbsp;</dt>
+                                <dd className="on">12세이상관람가,&nbsp;192분,&nbsp;미국, 장편</dd>
+                                <dt>개봉 :&nbsp;</dt>
+                                <dd className="on">2022-12-14</dd>
+                                <dt>배급사 :&nbsp;</dt>
+                                <dd className="on">월트디즈니컴퍼니코리아 유한책임회사</dd>
+                            </dl>
+                        </div>
+                       </div>
+                        -->
+
+                    </div>
+                </div><!-- .sect-base -->
+
+                <div class="cols-content" id="menu">
+                    <div class="col-detail" style="width: 100%">
+
+                        <div id="sect-story-movie" style="padding-bottom: 40px; padding-top: 0px; margin-top: 0px;margin-left: 30px;">
+<!--                            &lt;아바타: 물의 길&gt;은 판도라 행성에서&nbsp;<br>-->
+<!--                            '제이크 설리'와 '네이티리'가 이룬 가족이 겪게 되는 무자비한 위협과&nbsp;<br>-->
+<!--                            살아남기 위해 떠나야 하는 긴 여정과 전투,&nbsp;<br>-->
+<!--                            그리고 견뎌내야 할 상처에 대한 이야기를 그렸다.&nbsp;<br>-->
+<!--                            <br>-->
+<!--                            월드와이드 역대 흥행 순위 1위를 기록한 전편 &lt;아바타&gt;에 이어<br>-->
+<!--                            제임스 카메론 감독이 13년만에 선보이는 영화로,&nbsp;<br>-->
+<!--                            샘 워싱턴, 조 샐다나, 시고니 위버, 스티븐 랭, 케이트 윈슬렛이 출연하고<br>-->
+<!--                            존 랜도가 프로듀싱을 맡았다.-->
+                        </div>
+
+
+<!--                            <div class="real-rating">-->
+<!--                                <input>-->
+<!--                                <div class="wrap_btn">-->
+<!--                                    <a class="link-gradewrite" href="javascript:void(0);"><span>평점작성</span></a>-->
+<!--                                    <a class="link-reviewwrite" href="/movies/point/my-list.aspx"><span>내 평점</span></a>-->
+<!--                                </div>-->
+<!--                            </div>-->
+
+                            <form method="post" id="commentAdd" style="margin: 0">
+                                <fieldset class="fld_reply">
+                                    <legend class="screen_out">한줄평 쓰기 폼</legend>
+
+<!--                                    <input type="hidden" id="commentAddMovieCode" th:name="movieId" th:value="${movieCode}">-->
+
+                                    <div class="real-rating" style="margin-bottom: 60px;">
+                                        <div class="reply_write ">
+                                            <label for="Commentcontent" class="lab_write screen_out">한줄평</label>
+                                            <span class="textCount" id="firstNumm" style="color:orange;">0자</span> <span class="textTotal" style="color:orange;">/250자</span>
+                                            <textarea id="Commentcontent" name="content" class="tf_reply" placeholder="이 영화의 한줄평을 입력해주세요" maxlength="250" style="width: 68%; margin-left:10px"></textarea>
+                                        </div>
+
+                                        <div class="wrap_btn">
+                                            <button type="submit" class="link-gradewrite" style="width: 76px; height: 50px; color: #ffffff; text-align: center; line-height: 50px; display: inline-block; border-radius: 3px; margin-left: 6px;">
+                                                <span>한줄평 작성</span>
+                                            </button>
+<!--                                            <a class="link-gradewrite" onclick="submit_comment()"><span>한줄평 작성</span></a>-->
+                                            <a class="link-reviewwrite" href="/movies/point/my-list.aspx"><span>내 평점</span></a>
+                                        </div>
+                                    </div>
+                                </fieldset>
+                            </form>
+
+                            <div class="wrap-persongrade">
+                                <!-- 평점 목록 -->
+                                <ul class="point_col2" id="movie_point_list_container">
+                                    <div id="initAllComment"></div>
+                                    <!-- 여기를 반복 -->
+<!--                                    <li class="" data-reportcnt="0" data-spoilercnt="0" ><a-->
+<!--                                            class="screen_spoiler" >&nbsp;</a>-->
+<!--                                        <div class="box-contents">-->
+<!--                                            <ul class="writerinfo">-->
+<!--                                                <li class="writer-name"><span class=" egg-icon good "></span>za**841018-->
+<!--                                                </li>-->
+<!--                                                <li class="writer-etc">-->
+<!--                                                    <span class="day">2023.01.04</span>-->
+<!--                                                    <div>-->
+<!--                                                        <span class="like point_like" data-commentidx="33689979" data-ismygood="false">-->
+<!--                                                            <a class="btn_point_like">-->
+<!--                                                                <span>-->
+<!--                                                                    <img alt="like" class="like_red" src="http://img.cgv.co.kr/R2014/images/point/ico_point_default.png">-->
+<!--                                                                </span>-->
+<!--                                                                <span>0</span>-->
+<!--                                                            </a>-->
+<!--                                                        </span>-->
+<!--                                                    </div>-->
+<!--                                                    <div>-->
+<!--                                                        <span class="like point_like" data-commentidx="33689979" data-ismygood="false">-->
+<!--                                                            <a class="btn_point_like">-->
+<!--                                                                <span>-->
+<!--                                                                    | 신고-->
+<!--                                                                </span>-->
+<!--                                                                <span>0</span>-->
+<!--                                                            </a>-->
+<!--                                                        </span>-->
+<!--                                                    </div>-->
+<!--                                                </li>-->
+<!--                                            </ul>-->
+<!--                                        </div>-->
+<!--                                        <div class="box-comment"><p>못봄! ㅠ 예매를 잘못해서 못봄! ㅠㅅㅠ</p></div>-->
+<!--                                    </li>-->
+                                    <!-- 반복 여기까지 -->
+
+                                    <!-- 테이블의 등장 .. ,, -->
+                                    <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0" style="width: 100%; max-width: 100%; margin-bottom: 20px; border-spacing: 0; border-collapse: collapse; border-color: grey; display: table;">
+                                        <thead>
+                                        <tr>
+                                            <th width='140'>닉네임</th>
+                                            <th width='400'>한줄평 내용</th>
+                                            <th width='150'>작성날짜</th>
+                                            <th width='80'>좋아요</th>
+                                            <th width='80'>신고</th>
+                                            <th width='80'>수정/삭제</th>
+                                        </tr>
+                                        </thead>
+                                        <tbody id="tbody">
+
+                                        </tbody>
+                                    </table>
+
+                                </ul>
+                            </div>
+                        </div><!-- .sect-grade -->
+
+                    </div><!-- .col-detail -->
+
+                </div>
+            </div>
+            <span style="display:none" class="modifyCommentDummy"></span>
+        </div>
+        <!--/ Contents End -->
+    </div>
+    <!-- /Contents Area -->
+</div>
+
+<script>
+
+    let movieCode = [[ ${movieCode} ]];
+    // let nickname = [[ ${session.nickname} ]];
+
+    $(document).ready(function() {
+        initMovieDetail();
+        initAllComment();
+
+    });
+
+    function initMovieDetail(){
+        $.ajax({
+            // type: "GET",
+            url: "/api/movie/" + movieCode,
+            // dataType: "json",
+            success: function (data) {
+                let con='';
+
+                con+='<div class="box-contents">';
+                con+='<div class="title" style="margin-top: 10px;">';
+                con+='<strong>'+data.movieNm+'</strong>';
+                con+='<p>'+data.movieNmEn+'</p>';
+                con+='</div>';
+                con+='<div class="score" style="margin-top: 10px;">';
+                con+='</div>';
+                con+='<div class="spec">';
+                con+='<dl>';
+                con+='<dt>감독 :&nbsp;</dt>';
+                con+='<dd class="on">'+data.directorNm+' ('+data.directorNmEn+')</dd>';
+                con+='<dt>배우 :&nbsp;</dt>';
+                con+='<dd class="on">'+data.actorNm.substring(0, data.actorNm.length - 1).replace(/\|/g,", ")+'</dd>';
+                con+='<dt>장르 :&nbsp;</dt>';
+                con+='<dd class="on">'+data.genreNm.substring(0, data.genreNm.length - 1)+'</dd>';
+                con+='<dt>기본정보 :&nbsp;</dt>';
+                con+='<dd class="on">'+data.watchGradeNm+',&nbsp;'+data.showtime+'분,&nbsp;'+data.nationNm+', '+data.typeNm+'</dd>';
+                con+='<dt>개봉 :&nbsp;</dt>';
+                con+='<dd class="on">'+data.openDt+'</dd>';
+                con+='<dt>제작연도 :&nbsp;</dt>';
+                con+='<dd class="on">'+data.prdtYear+'</dd>';
+                con+='<dt>배급사 :&nbsp;</dt>';
+                con+='<dd class="on">'+data.companyNm+'</dd>';
+                con+='</dl>';
+                con+='</div>';
+                con+='</div>';
+
+                $('#movie_detail_content').html(con);
+
+                $('#movie_name').html(data.movieNm);
+
+                let movieImgUrlArr = data.movieImg.split("|");
+                let randomNum = Math.floor(Math.random() * movieImgUrlArr.length);
+                let movieImgUrl = movieImgUrlArr[randomNum];
+                $('#movieImg_big').html('<a href="'+movieImgUrl+'" title="포스터 크게 보기 새창" target="_blank">');
+                $('#movieImg').html('<img src="'+movieImgUrl+'" alt="'+data.movieNm+' 포스터 새창" >');
+
+                $('#sect-story-movie').html(data.summary);
+
+            },
+            error: function(xhr) {
+                console.log("실패다ㅠ");
+                console.log("에러메세지 = " + textStatus);
+                console.log("에러코드 = "+xhr.status);
+            }
+        });
+    }
+
+    function initAllComment(){
+        console.log("initAllComment 실행됨");
+        $.ajax({
+            type: "GET",
+            url: "/api/comments/" + movieCode,
+            // data: JSON.stringify({ "movieCode" : movieCode}),
+            // contentType : "application/json",
+            dataType: "json",
+            success: function (data) {
+                // console.log("댓글 개수는?" + data.length);
+                let con='';
+
+                if (data.length == 0) {
+                    con += '<tr>';
+                    con += '<td colspan="6" style="margin:40px; padding: 40px; font-size: 17px;">아직 등록된 한줄평이 없습니다.<br> 영화 한줄평을 등록해주세요 ! ^^</td>';
+                    con += '</tr>';
+                } else {
+                    for (let i = 0; i < data.length; i++) {
+                        con += '<tr id="comment' + data[i].id + '">';
+                        con += '<td>' + data[i].memberId + '</td>';
+                        con += '<td id="commentContent' + data[i].id + '">' + data[i].content + '</td>';
+                        con += '<td>' + data[i].indate + '</td>';
+                        con += '<td><button type="button" onclick="goodup(' + data[i].id + ')" style="border: 1px solid gray; padding: 5px; margin: 3px">좋아요</button>' + data[i].good + '</td>';
+                        con += '<td><button type="button" onclick="badup(' + data[i].id + ')" style="border: 1px solid gray; padding: 5px; margin: 3px">신고요</button>' + data[i].bad + '</td>';
+                        con += '<td><span id="commentUpdate' + data[i].id + '"><button type="button" onclick="updateShowComment(' + data[i].id + ')" style="border: 1px solid gray; padding: 5px; margin: 3px">수정</button></span>';
+                        con += '<button type="button" id="commentDelete' + data[i].id + '" onclick="deleteCommentByCommentId(' + data[i].id + ')" style="border: 1px solid gray; padding: 5px; margin: 3px">삭제</button></td>';
+                        con += '</tr>';
+
+                    }
+                }
+                // $('#initAllComment').html(con);
+                $('#tbody').html(con);
+                $('#dataTable').DataTable();
+            },
+            error: function(xhr) {
+                console.log("initAllComment 실패다ㅠ");
+                console.log("에러메세지 = " + textStatus);
+                console.log("에러코드 = "+xhr.status);
+            }
+        });
+    }
+
+    function goodup(id){
+        $.ajax({
+            url: "/api/comment/GoodUp/" +id,
+            type: "PUT",
+            // data:{'id':id},
+            // dataType: "json",
+            success: function (data) {
+                // console.log("/api/comment/GoodUp : id는 " + id+ "data는" +data);
+                initAllComment();
+            }
+        });
+    }
+
+    function badup(id){
+        $.ajax({
+            url: "/api/comment/BadUp/" +id,
+            type: "PUT",
+            // data:{'id':id},
+            // dataType: "json",
+            success: function (data) {
+                // console.log("/api/comment/BadUp : id는 " + id+ "data는" +data);
+                initAllComment();
+            }
+        });
+    }
+
+    // // 한줄평 작성 클릭 시 form submit 되게 하는 함수.
+    // // a태그의 class 로 CSS가 적용되어 있어 <button> 태그의 submit 속성을 사용하지 않고, <a> 태그로 submit을 해야 하는 상황이라 함수를 생성함
+    // function submit_comment() {
+    //     document.getElementById('commentAdd').submit();
+    // }
+
+    $("#commentAdd").submit(function(e) {
+        e.preventDefault();
+
+        let commentContent = $("#Commentcontent").val();
+
+        if(commentContent.length == 0) {
+            alert("한줄평 내용을 입력해주세요.");
+            return false;
+        }
+
+        if(commentContent.length > 250) {
+            alert("한줄평은 250자 이내로 입력해주세요.");
+            return false;
+        }
+
+        // console.log("commentAdd submit 함수 실행됨 + content는" + commentContent);
+
+        $.ajax({
+            type: "POST",
+            url: "/api/comment/add",
+            data: JSON.stringify({
+                "movieId": movieCode,
+                "content" : commentContent,
+                "memberId" : 77
+            }),
+            contentType : "application/json",
+            // dataType: "text",
+            success: function(data) {
+                document.getElementById("Commentcontent").value='';
+                $('.textCount').text('0자');
+                initAllComment();
+            },
+            error: function(xhr) {
+                console.log("에러코드(INSERT) = "+xhr.status);
+                console.log("에러메세지 = " + textStatus);
+            }
+        });
+    });
+
+    $('#Commentcontent').keyup(function (e) {
+        // console.log("Commentcontent 함수 호출");
+
+        let content = $(this).val();
+
+        // 글자수 세기
+        if (content.length == 0 || content == '') {
+            $('.textCount').text('0자');
+        } else {
+            $('.textCount').text(content.length + '자');
+        }
+
+        // 글자수 제한
+        if (content.length > 250) {
+            // 200자 부터는 타이핑 되지 않도록
+            $(this).val($(this).val().substring(0, 250));
+            // 200자 넘으면 알림창 뜨도록
+            alert('한줄평은 250자 이내로 입력해주세요.');
+            $('.textCount').text('250자');
+        };
+    });
+
+    function updateShowComment(id){
+        console.log("updateShowComment 실행됨");
+
+        $.ajax({
+            url: "/api/comment/" +id,
+            type: "POST",
+            // data:{'id':id},
+            // dataType: "json",
+            success: function (data) {
+
+                let con = '';
+                con+='<div class="reply_write ">';
+                con+='<label for="CommentcontentUpdate" class="lab_write screen_out">한줄평 수정 (250자 이내 작성)</label>';
+                // con+='<span class="textCountUpdate" style="color:orange;">0자</span> <span class="textTotal" style="color:orange;">/250자</span>';
+                con+='<textarea id="CommentcontentUpdate" name="content" class="tf_reply" placeholder="이 영화의 한줄평을 입력해주세요" maxLength="250" style="width: 100%; margin-left:10px"></textarea>';
+                con+='</div>';
+
+                // <div class="reply_write ">
+                //     <label for="CommentcontentUpdate" class="lab_write screen_out">한줄평</label>
+                //     <span class="textCount" id="firstNumm" style="color:orange;">0자</span> <span
+                //     class="textTotal" style="color:orange;">/250자</span>
+                //     <textarea id="CommentcontentUpdate" name="content" class="tf_reply" placeholder="이 영화의 한줄평을 입력해주세요"
+                //               maxLength="250" style="width: 70%; margin-left:10px"></textarea>
+                // </div>
+
+                $('#commentContent'+id).html(con);
+                document.getElementById("CommentcontentUpdate").value=data.content;
+
+                $('#commentUpdate'+id).html('<button type="button" onclick="updateCommentByCommentId('+id+')"\n' +
+                    '                        style="border: 1px solid gray; padding: 5px; margin: 3px; background-color: pink">수정완료</button>');
+            }
+        });
+    }
+
+    // $('#CommentcontentUpdate').keyup(function () {
+    //     console.log("CommentcontentUpdate 함수 호출");
+    //
+    //     let content = $(this).val();
+    //
+    //     // 글자수 세기
+    //     if (content.length == 0 || content == '') {
+    //         $('.textCountUpdate').text('0자');
+    //     } else {
+    //         $('.textCountUpdate').text(content.length + '자');
+    //     }
+    //
+    //     // 글자수 제한
+    //     if (content.length > 250) {
+    //         // 200자 부터는 타이핑 되지 않도록
+    //         $(this).val($(this).val().substring(0, 250));
+    //         // 200자 넘으면 알림창 뜨도록
+    //         alert('한줄평은 250자 이내로 입력해주세요.');
+    //         $('.textCountUpdate').text('250자');
+    //     };
+    // });
+
+    function updateCommentByCommentId(id){
+        console.log("updateCommentByCommentId 함수 실행");
+
+        let commentContentUpdate = $("#CommentcontentUpdate").val();
+
+        if(commentContentUpdate.length == 0) {
+            alert("한줄평 내용을 입력해주세요.");
+            return false;
+        }
+
+        if(commentContentUpdate.length > 250) {
+            alert("한줄평은 250자 이내로 입력해주세요.");
+            return false;
+        }
+
+        $.ajax({
+            url: "/api/comment/update/" +id,
+            type: "PUT",
+            data: JSON.stringify({
+                "id": id,
+                "content" : commentContentUpdate,
+            }),
+            contentType : "application/json",
+            success: function (data) {
+                // console.log("/api/comment/BadUp : id는 " + id+ "data는" +data);
+                // document.getElementById("Commentcontent").value='';
+                // $('.textCount').text('0자');
+                initAllComment();
+            }
+        });
+    }
+
+    function deleteCommentByCommentId(id){
+
+        if(confirm("한줄평을 정말로 삭제하시겠습니까?")) {
+
+            $.ajax({
+                url: "/api/comment/delete/" + id,
+                type: "DELETE",
+                success: function (data) {
+                    initAllComment();
+                }
+            });
+        }
+    }
+</script>
+
+</body></html>

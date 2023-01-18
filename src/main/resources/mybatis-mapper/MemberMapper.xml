@@ -2,5 +2,177 @@
         "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 
 <mapper namespace="com.example.movie.mapper.MemberMapper">
+    <insert id="signupMember" parameterType="com.example.movie.dto.MemberDTO">
+        insert into member
+                (
+                    userId
+                    ,password
+                    ,name
+                    ,nickname
+                    ,phone
+                    ,address
+                    ,addressDetail
+                    ,email
+                    ,gender
+                    ,sns
+                    ,birth
+                )
+            values
+                (
+                 #{userId}
+                , #{password}
+                , #{name}
+                , #{nickname}
+                , #{phone}
+                , #{address}
+                , #{addressDetail}
+                , #{email}
+                , #{gender}
+                , #{sns}
+                , #{birth}
+                )
+    </insert>
 
+    <select id="loginUserIdPassword" parameterType="com.example.movie.dto.MemberDTO" resultType="com.example.movie.dto.MemberDTO" >
+        select
+            id
+            ,nickname
+        from
+            member
+        where
+            userId = #{userId}
+        and
+            password = #{password}
+        and
+            isMember = 'Y'
+    </select>
+
+    <select id="selectMemberIdByNickname" parameterType="String" resultType="Long">
+        select
+            id
+        from
+            member
+        where nickname = #{nickname}
+    </select>
+
+    <select id="selectMemberDetail" parameterType="String" resultType="com.example.movie.dto.MemberDTO">
+        SELECT
+            id
+            ,nickname
+            ,name
+            ,userId
+            ,password
+            ,nickname
+            ,address
+            ,addressDetail
+            ,email
+            ,phone
+            ,gender
+            ,sns
+            ,birth
+            ,indate
+        FROM
+            member
+        WHERE
+            userId = #{userId}
+    </select>
+
+    <update id="updateMemberName" parameterType="com.example.movie.dto.MemberDTO">
+        UPDATE
+            member
+        SET
+            name = #{name}
+        WHERE
+            userId = #{userId}
+
+    </update>
+
+    <update id="updateMemberPassword" parameterType="com.example.movie.dto.MemberDTO">
+        UPDATE
+            member
+        SET
+            password = #{password}
+        WHERE
+            userId = #{userId}
+    </update>
+
+    <update id="updateIsMemberStatus" parameterType="com.example.movie.dto.MemberDTO">
+        UPDATE
+            member
+        SET
+            isMember = 'N'
+        WHERE
+            userId = #{userId}
+        AND
+            password = #{password}
+    </update>
+
+    <select id="selectAllCustomers" resultType="com.example.movie.dto.MemberDTO">
+        SELECT
+            userId
+             ,name
+             ,nickname
+             ,address
+             ,phone
+             ,email
+             ,gender
+             ,sns
+             ,birth
+             ,indate
+             ,role
+             ,isMember
+        FROM
+            member
+    </select>
+
+    <update id="memberStatus" parameterType="com.example.movie.dto.MemberDTO">
+        UPDATE
+            member
+        SET
+            isMember = #{isMember}
+        WHERE
+            userId = #{userId}
+    </update>
+
+    <select id="findByUserId" parameterType="String" resultType="com.example.movie.dto.MemberDTO">
+        select
+            userId
+             ,password
+             ,name
+             ,nickname
+             ,address
+             ,phone
+             ,email
+             ,gender
+             ,sns
+             ,birth
+             ,indate
+             ,role
+             ,isMember
+        from
+            member
+        where
+            userId = #{userId}
+    </select>
+
+    <select id="findByMemberNickname" parameterType="String" resultType="com.example.movie.dto.MemberDTO">
+        select
+            userId
+             ,password
+             ,name
+             ,nickname
+             ,address
+             ,phone
+             ,email
+             ,gender
+             ,sns
+             ,birth
+             ,indate
+             ,role
+             ,isMember
+        from
+            member
+        where
+            nickname = #{nickname}
+    </select>
 </mapper>

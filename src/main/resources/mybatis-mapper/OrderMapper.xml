@@ -2,5 +2,154 @@
         "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 
 <mapper namespace="com.example.movie.mapper.OrderMapper">
+    <select id="selectOrderByMember" parameterType="Long" resultType="com.example.movie.dto.OrderDTO">
+        SELECT
+            id
+             ,ticketCount
+             ,screenDate
+             ,seat
+             ,totalPrice
+        FROM
+            ticket
+        WHERE
+            member_id = #{member_id}
+          AND
+            orderStatus = 'Y'
+        ORDER BY
+            id
+        DESC
+    </select>
+
+    <select id="selectMovieIds" parameterType="Long" resultType="Long">
+        SELECT
+            movie_id
+        FROM
+            ticket
+        WHERE
+            member_id = #{member_id}
+        AND
+            orderStatus = 'Y'
+        ORDER BY
+            id
+        DESC
+    </select>
+
+    <select id="selectTheaterIds" parameterType="Long" resultType="Long">
+        SELECT
+            theater_id
+        FROM
+            ticket
+        WHERE
+            member_id = #{member_id}
+          AND
+            orderStatus = 'Y'
+        ORDER BY
+            id
+        DESC
+    </select>
+
+    <select id="selectCancelOrder" parameterType="Long" resultType="com.example.movie.dto.OrderDTO">
+        SELECT
+            id
+             ,screenDate
+             ,indate
+             ,totalPrice
+        FROM
+            ticket
+        WHERE
+            member_id = #{member_id}
+          AND
+            orderStatus = 'N'
+        ORDER BY
+            id
+        DESC
+    </select>
+
+    <select id="selectCancelMovieIds" parameterType="Long" resultType="Long">
+        SELECT
+            movie_id
+        FROM
+            ticket
+        WHERE
+            member_id = #{member_id}
+          AND
+            orderStatus = 'N'
+        ORDER BY
+            id
+        DESC
+    </select>
+
+    <select id="selectCancelTheaterIds" parameterType="Long" resultType="Long">
+        SELECT
+            theater_id
+        FROM
+            ticket
+        WHERE
+            member_id = #{member_id}
+          AND
+            orderStatus = 'N'
+        ORDER BY
+            id
+        DESC
+    </select>
+
+    <select id="selectOrderById" parameterType="Long" resultType="com.example.movie.dto.OrderDTO">
+        SELECT
+            id
+             ,screenDate
+             ,ticketCount
+             ,indate
+             ,seat
+             ,totalPrice
+        FROM
+            ticket
+        WHERE
+            member_id = #{member_id}
+          AND
+            orderStatus = 'Y'
+        ORDER BY
+            id
+                DESC
+            LIMIT 1
+    </select>
+
+    <select id="selectMovieIdOne" parameterType="Long" resultType="Long">
+        SELECT
+            movie_id
+        FROM
+            ticket
+        WHERE
+            member_id = #{member_id}
+        AND
+            orderStatus = 'Y'
+        ORDER BY
+            id
+        DESC
+            LIMIT 1
+    </select>
+
+    <select id="selectTheaterIdOne" parameterType="Long" resultType="Long">
+        SELECT
+            theater_id
+        FROM
+            ticket
+        WHERE
+            member_id = #{member_id}
+          AND
+            orderStatus = 'Y'
+        ORDER BY
+            id
+        DESC
+        LIMIT 1
+    </select>
+
+    <update id="updateOrderStatus" parameterType="Long">
+        UPDATE
+            ticket
+        SET
+            orderStatus = 'N'
+        WHERE
+            id = #{id}
+    </update>
 
 </mapper>

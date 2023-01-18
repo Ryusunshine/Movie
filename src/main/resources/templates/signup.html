@@ -1,0 +1,265 @@
+<html lang="en"><head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>회원가입</title>
+</head>
+<body>
+<h1>JOIN US</h1>
+<link href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:400,700,300" rel="stylesheet" type="text/css">
+<script src="//t1.daumcdn.net/mapjsapi/bundle/postcode/prod/postcode.v2.js"></script>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+<script>
+    function testForm() {
+
+        let id = $("#userId").val();
+        let pw = $("#password").val();
+        let pwcon = $("#pwcon").val();
+        let nickname = $("#nickname").val();
+        let name = $("#name").val();
+        let phone = $("#phone").val();
+        let address = $("#address").val();
+        let addressDetail = $("#addressDetail").val();
+        let email = $("#email").val();
+        let gender = $("#gender").val();
+        let sns = $('[name="sns"]:checked');
+        let snsCheckList = [];
+        let birth = $("#birth").val();
+        let regPhone = /^01([0|1|6|7|8|9])-?([0-9]{3,4})-?([0-9]{4})$/;
+
+
+        sns.each((i,data)=>{
+            snsCheckList.push(data.value);
+        })
+
+        if (!$('input.checkbox_check').is(':checked')) {
+            $("#warning").text("이용약관에 동의는 필수입니다.");
+            return false;
+        }
+
+        if (id.length < 6 || id.length > 16) {
+            $("#warning").text("ID 값은 7자 이상 15자 이하로 해주세요.");
+            return false;
+        }
+
+        if (pw.length < 6 || pw.length > 16) {
+            $("#warning").text("비밀번호 값은 7자 이상 15자 이하로 해주세요.");
+            return false;
+        }
+
+        if (pw != pwcon) {
+            $("#warning").text("비밀번호와 확인값이 일치하지 않습니다.");
+            return false;
+        }
+
+        if (address == '') {
+            $("#warning").text("주소 값이 없습니다.");
+            return false;
+        }
+
+        if (addressDetail == '') {
+            $("#warning").text("세부주소 값이 없습니다.");
+            return false;
+        }
+
+        if (phone == '') {
+            $("#warning").text("연락처 값이 없습니다.");
+            return false;
+        }
+
+        if (email == '') {
+            $("#warning").text("이메일 값이 없습니다.");
+            return false;
+        }
+
+        if (!isEmail(email)) {
+            $("#warning").text("이메일 형식에 맞지 앖습니다.");
+            return false;
+        }
+        if (!regPhone.test(phone) === true) {
+            $("#warning").text("올바른 전화번호형식이 아닙니다.");
+            return false;
+        } else {
+            var regNumber = /[^0-9]/g;
+            phone = phone.replace(regNumber, "");
+        }
+
+
+        let saveJsonObject = {};
+
+        saveJsonObject.userId = id;
+        saveJsonObject.password = pw;
+        saveJsonObject.name = name;
+        saveJsonObject.phone = phone;
+        saveJsonObject.nickname = nickname;
+        saveJsonObject.address = address;
+        saveJsonObject.addressDetail = addressDetail;
+        saveJsonObject.email = email;
+        saveJsonObject.gender = gender;
+        saveJsonObject.sns = snsCheckList;
+        saveJsonObject.birth = birth;
+
+        console.log(saveJsonObject);
+
+        $.ajax({
+            type: "POST",
+            url: "/member/signup", //요청 할 URL
+            data: saveJsonObject, //넘길 파라미터
+            success: function (data) {
+                //통신이 정상적으로 되었을때 실행 할 내용
+                if (data != null) {
+                    if (data == "success") {
+
+                        alert('회원가입에 성공하였습니다.');
+                        location.href = "/";
+                    } else {
+
+                        $("#warning").text(data);
+                        return false;
+
+                    }
+                }
+
+            },
+            error: function (data) {
+                $("#warning").text("접속 도중 오류가 발생했습니다.");
+            }
+        });
+
+
+        return true;
+    }
+
+    function isNumeric(str) {
+        if (typeof str != "string") return false // we only process strings!
+        return !isNaN(str) && // use type coercion to parse the _entirety_ of the string (`parseFloat` alone does not do this)...
+            !isNaN(parseFloat(str)) // ...and ensure strings of whitespace fail
+    }
+
+    function isEmail(email) {
+        var regex = /^([a-zA-Z0-9_.+-])+\@(([a-zA-Z0-9-])+\.)+([a-zA-Z0-9]{2,4})+$/;
+        return regex.test(email);
+    }
+
+    function searchAddress() {
+
+        new daum.Postcode({
+            oncomplete: function (data) {
+                // 팝업에서 검색결과 항목을 클릭했을때 실행할 코드를 작성하는 부분.
+
+                // 각 주소의 노출 규칙에 따라 주소를 조합한다.
+                // 내려오는 변수가 값이 없는 경우엔 공백('')값을 가지므로, 이를 참고하여 분기 한다.
+                var addr = ''; // 주소 변수
+                var extraAddr = ''; // 참고항목 변수
+
+                //사용자가 선택한 주소 타입에 따라 해당 주소 값을 가져온다.
+                if (data.userSelectedType === 'R') { // 사용자가 도로명 주소를 선택했을 경우
+                    addr = data.roadAddress;
+                } else { // 사용자가 지번 주소를 선택했을 경우(J)
+                    addr = data.jibunAddress;
+                }
+
+                // 사용자가 선택한 주소가 도로명 타입일때 참고항목을 조합한다.
+                if (data.userSelectedType === 'R') {
+                    // 법정동명이 있을 경우 추가한다. (법정리는 제외)
+                    // 법정동의 경우 마지막 문자가 "동/로/가"로 끝난다.
+                    if (data.bname !== '' && /[동|로|가]$/g.test(data.bname)) {
+                        extraAddr += data.bname;
+                    }
+                    // 건물명이 있고, 공동주택일 경우 추가한다.
+                    if (data.buildingName !== '' && data.apartment === 'Y') {
+                        extraAddr += (extraAddr !== '' ? ', ' + data.buildingName : data.buildingName);
+                    }
+                    // 표시할 참고항목이 있을 경우, 괄호까지 추가한 최종 문자열을 만든다.
+                    if (extraAddr !== '') {
+                        extraAddr = ' (' + extraAddr + ')';
+                    }
+                    // 조합된 참고항목을 해당 필드에 넣는다.
+                    document.getElementById("address").value = extraAddr;
+                    document.getElementById("postcode").value = data.zonecode;
+
+                } else {
+                    document.getElementById("address").value = '';
+                }
+
+                // 우편번호와 주소 정보를 해당 필드에 넣는다.
+                //document.getElementById('cstmrZipcode').value = data.zonecode;
+                document.getElementById("address").value = addr;
+                document.getElementById("postcode").value = data.zonecode;
+                // 커서를 상세주소 필드로 이동한다.
+                document.getElementById("address").focus();
+            }
+        }).open();
+    }
+</script>
+
+<section id="portfolio" style="background-color: #fcf1e3;padding-left: 0px;">
+    <div class="container">
+        <div class="row">
+
+            <div class="col-md-12 col-sm-12">
+
+
+                <!-- iso section -->
+                <div class="iso-section wow fadeInUp" data-wow-delay="2.6s">
+
+                </div>
+
+                <section id="contact" style="padding-top: 4rem;">
+                    <div class="container">
+                        <div class="row">
+                            <div class="wow fadeInUp col-md-6 col-sm-6" data-wow-delay="1.6s">
+                                <div style="font-size: 20px;padding-bottom: 40px;display:inline-flex;">
+                                    <!-- <a href="/loginPage">LOGIN</a> / <a href="/signupPage">SIGNUP</a> -->
+                                    <button class="form-control submit" style="width:100px;" onclick="location.href='/loginPage'">LOGIN</button><button onclick="location.href='/signupPage'" class="form-control submit" style="width:100px;">SIGNUP</button>
+                                </div>
+                                <h1>JOIN US</h1>
+                                <div class="contact-form">
+
+                                    <form id="contact-form" method="post" action="/member/signup">
+
+                                        <h3 style="padding-bottom: 20px;">REQUIRED</h3>
+                                        <a style="color:red;"></a>
+                                        <p><input style="background:white;" name="userId" id="userId" type="text" class="form-control" placeholder="아이디(7~15글자)" required=""></p>
+                                        <p><input style="background:white;" name="password" id="password" type="password" class="form-control" placeholder="비밀번호(7~15글자)" required=""></p>
+                                        <p><input style="background:white;" name="pwcon" id="pwcon" type="password" class="form-control" placeholder="비밀번호 확인" required=""></p>
+                                        <p><input style="background:white;" name="name" id="name" type="text" class="form-control" placeholder="이름" required=""></p>
+                                        <p><input style="background:white;" name="nickname" id="nickname" type="text" class="form-control" placeholder="닉네임" required=""></p>
+                                        <div style="display: flex;">
+                                            <input type="button" class="form-control submit" onclick="searchAddress()" style="background: #111112;color:white;height: 50px;width:100px;" value="주소검색">
+                                            <input style="background:lightgray;width:100%;" name="postcode" id="postcode" type="text" class="form-control" placeholder="우편번호" required="" disabled="">
+                                        </div>
+                                        <p><input style="background:lightgray;width:100%;" name="address" id="address" type="text" class="form-control" placeholder="주소" required="" disabled=""></p>
+                                        <p><input style="background:white;" name="addressDetail" id="addressDetail" type="text" class="form-control" placeholder="상세주소" required=""></p>
+                                        <p><input style="background:white;" name="phone" id="phone" type="text" class="form-control" placeholder="연락처(숫자만)" required=""></p>
+                                        <p><input style="background:white;" name="email" id="email" type="email" class="form-control" placeholder="이메일" required=""></p>
+
+
+                                        <h3 style="padding-bottom: 20px;font-size:20px;">OPTIONAL</h3>
+
+                                        <select style="background:white;" name="gender" id="gender">
+                                            <option value="">Optional</option>
+                                            <option value="남자">남자</option>
+                                            <option value="여자">여자</option>
+                                        </select>
+                                        <input style="background:white;" name="birth" id="birth" type="date" class="form-control" placeholder="생년월일(20010101)">
+                                        <p>
+                                            인스타 : <input style="background:white;" name="sns" type="checkbox" class="form-control" placeholder="SNS" value="facebook">
+                                            페이스북 : <input style="background:white;" name="sns" type="checkbox" class="form-control" placeholder="SNS" value="instagram">
+                                            틱톡 : <input style="background:white;" name="sns" type="checkbox" class="form-control" placeholder="SNS" value="tiktok">
+                                        </p>
+
+                                        <a id="warning" style="color:red;">접속 도중 오류가 발생했습니다.</a>
+                                        <div class="contact-submit" style="width:100%;">
+                                            <input type="button" onclick="testForm()" class="form-control submit" value="회원가입하기">
+                                        </div>
+                                        <a href="/member/loginPage">LOGIN</a> / <a href="/signupPage">SIGNUP</a>
+                                    </form>
+                                </div>
+                                <br>
+                                <div style="text-align: center;font-size: 16px;">
+                                    <input type="checkbox" id="iagree" style="height: 20px;width: 20px;margin:0;" class="checkbox_check"><b>제공 약관을 이해하였으며, 동의합니다.</b>
+                                </div>
+                                <img src="data:image/jpeg;base64,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">
+
+                            </div></div></div></section></div></div></div></section></body></html>

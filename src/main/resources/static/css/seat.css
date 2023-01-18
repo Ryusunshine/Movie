@@ -1,0 +1,426 @@
+/* content */
+.body{
+    height:120%;
+}
+.select-container {
+    margin-top: 100px;
+
+}
+
+.select-wrapper {
+    width: 900px;
+    height:950px;
+    background-color: #F2F0E5;
+    margin: 0 auto;
+    border-left: 1px solid #dddddd;
+    border-right: 1px solid #dddddd;
+}
+
+.select-title {
+    background-color: #444444;
+    color: #dddddd;
+    font-size: 16px;
+    text-align: center;
+    padding: 10px;
+}
+
+.select-seat-container {
+    display: flex;
+    /* align-items: center; */
+    border-bottom: 2px solid #dddddd;
+}
+
+.select-seat-number-container {
+    flex-grow: 1;
+    border-right: 1px solid #dddddd;
+    display: flex;
+}
+
+.select-seat-number-wrapper {
+    padding: 20px 0 20px 20px;
+    flex-grow: 1;
+}
+
+.select-seat-ul {
+    display: flex;
+}
+
+.select-seat-ul>li {
+    width: 28px;
+    height: 28px;
+    border: 1px solid #dddddd;
+    text-align: center;
+    font-weight: bold;
+    font-size:15px;
+    /* line-height: 15px; */
+    /* padding: 5px; */
+    padding: 2px;
+}
+
+.select-seat-ul>li:hover {
+    color: white;
+    background-color: #222222;
+    cursor: pointer;
+}
+
+.select-seat-ul-active {
+    color: white;
+    background-color: #222222;
+}
+
+.select-seat-ul>li:not(:first-child) {
+    margin-left: 5px;
+}
+
+.select-seat-information {
+    flex-grow: 1;
+    padding: 15px 0 20px 20px;
+}
+
+.select-seat {
+    display: flex;
+    font-size: 12px;
+}
+
+.select-seat:not(:first-child) {
+    margin-top: 12px;
+}
+
+.select-seat-age {
+    width: 40px;
+    margin-top: 5px;
+    font-size: 13px;
+    font-weight: bold;
+    text-align: center;
+}
+
+.select-seat-number {
+    margin-left: 15px;
+}
+
+.reserve-number-wrapper {
+    flex-grow: 1;
+    padding-top: 15px;
+    border-left: 1px solid #DDDDDD;
+    text-align: center;
+}
+
+.reserve-number-title {
+    font-size: 15px;
+}
+
+.reserve-number {
+    margin-top: 20px;
+    font-size: 34px;
+    font-weight: bold;
+}
+
+.selected-movie {
+    font-size: 20px;
+    margin-bottom: 5px;
+    font-weight: bold;
+}
+
+.select-seat-information-wrapper {
+    display: flex;
+}
+
+.select-theater-place {
+    font-size: 12px;
+}
+
+.select-theater-place:not(:last-child) {
+    width: 55px;
+    border-right: 1px solid #dddddd;
+}
+
+.select-theater-place:last-child {
+    width: 150px;
+    /* border-right: 1px solid #dddddd; */
+}
+
+.select-theater-place:not(:first-child) {
+    margin-left: 12px;
+}
+
+.select-theater-date {
+    /*  font-size: 18px;
+    margin-top: 8px;
+    font-weight: bold; */
+    display: flex;
+}
+
+.select-theater-date>div {
+    font-size: 18px;
+    margin-top: 8px;
+    font-weight: bold;
+}
+
+.theater-time {
+    margin-left: 5px;
+}
+
+.remain-seats {
+    margin-left: 3px;
+    color: rgba(255, 0, 0, 0.6);
+    font-weight: bold;
+}
+
+.selected-seats-wrapper {
+    margin-top: 5px;
+    padding-top: 7px;
+}
+
+.selected-seats {
+    font-size: 13px;
+    word-spacing: 2px;
+    margin-left: 20px;
+}
+
+.selected-seats-title {
+    color: black;
+    font-size: 13px;
+}
+
+.ticket-price-wrapper{
+    margin-top: 5px;
+    display: flex;
+    align-items: center;
+    padding-top:10px;
+}
+.ticket-price-wrapper>div{
+    font-weight: bold;
+}
+.ticket-price-title{
+    font-size: 14px;
+    margin-top: 2px;
+}
+
+.ticket-price {
+    margin-left: 47px;
+    font-size:20px;
+}
+
+.reserve-button {
+    display: flex;
+    align-items: center;
+    font-weight: bold;
+    font-size: 14px;
+    padding-top: 15px;
+    margin-right: 14px;
+}
+
+.reserve-button img {
+    margin-left: 20px;
+    width: 80px;
+    height:35px
+}
+
+.seat-container {
+    margin-top: 20px;
+    display: flex;
+    justify-content: center;
+    height:500px;
+}
+
+.screen-view {
+    width: 140px;
+    color: #777777;
+    padding-top: 30px;
+    font-size: 30px;
+    text-align: center;
+    margin: 0 auto 30px auto;
+    border-bottom: 1px solid #666666;
+    letter-spacing: 4px;
+}
+
+.seat-wrapper {
+    background-color: #222222;
+    width: 700px;
+    height: 500px;
+    /* padding-top: 120px; */
+}
+
+.seat {
+    width: 30px;
+    height: 30px;
+}
+
+.seat {
+    font-size: 13px;
+    background-color: #555555;
+    color: white;
+    border: 1px solid rgba(255, 0, 0, 0.6);
+}
+
+.seat:hover {
+    background-color: red;
+    color: white;
+    cursor: pointer;
+}
+
+.seat:active {
+    background-color: red;
+    color: white;
+}
+
+.clicked {
+    background-color: red;
+    color: white;
+}
+
+.seatButtonWrapper {
+    text-align: center;
+}
+
+.seatButtonWrapper>input {
+    width: 30px;
+    height: 30px;
+}
+
+.left-margin {
+    margin-left: 30px;
+}
+
+.right-margin {
+    margin-right: 30px;
+}
+
+.top-margin {
+    margin-top: 30px;
+}
+
+/*popup*/
+.popup_layer {position:fixed;top:0;left:0;z-index: 10000; width: 100%; height: 100%; background-color: rgba(0, 0, 0, 0.4); }
+/*팝업 박스*/
+.popup_box{position: relative;top:50%;left:50%; overflow: auto; height: 500px; width:400px;transform:translate(-50%, -50%);z-index:1002;box-sizing:border-box;background:#fff;box-shadow: 2px 5px 10px 0px rgba(0,0,0,0.35);-webkit-box-shadow: 2px 5px 10px 0px rgba(0,0,0,0.35);-moz-box-shadow: 2px 5px 10px 0px rgba(0,0,0,0.35);}
+/*컨텐츠 영역*/
+.popup_box .popup_cont {padding:50px;line-height:1rem;font-size:14px; }
+.popup_box .popup_cont h2 {padding:15px 0;color:#333;margin:0;}
+.popup_box .popup_cont p{ border-top: 1px solid #666;padding-top: 30px;}
+/*버튼영역*/
+.popup_box .popup_btn {display:table;table-layout: fixed;width:100%;height:70px;background:#ECECEC;word-break: break-word;}
+.popup_box .popup_btn a {position: relative; display: table-cell; height:70px;  font-size:17px;text-align:center;vertical-align:middle;text-decoration:none; background:#ECECEC;}
+.popup_box .popup_btn a:before{content:'';display:block;position:absolute;top:26px;right:29px;width:1px;height:21px;background:#fff;-moz-transform: rotate(-45deg); -webkit-transform: rotate(-45deg); -ms-transform: rotate(-45deg); -o-transform: rotate(-45deg); transform: rotate(-45deg);}
+.popup_box .popup_btn a:after{content:'';display:block;position:absolute;top:26px;right:29px;width:1px;height:21px;background:#fff;-moz-transform: rotate(45deg); -webkit-transform: rotate(45deg); -ms-transform: rotate(45deg); -o-transform: rotate(45deg); transform: rotate(45deg);}
+.popup_box .popup_btn a.close_day {background:#5d5d5d;}
+.popup_box .popup_btn a.close_day:before, .popup_box .popup_btn a.close_day:after{display:none;}
+/*오버레이 뒷배경*/
+.popup_overlay{position:fixed;top:0px;right:0;left:0;bottom:0;z-index:1001;;background:rgba(0,0,0,0.5);}
+/*popup*/
+.cancle_btn {
+    float:left;
+    margin-left:50px;
+}
+.confirm_btn{
+    float:right;
+    margin-right:30px;
+}
+#ticket_tnb {
+    position: relative;
+    color: #363634;
+    width: 100%;
+    height: 120px;
+    background-color: #333331;
+    margin-bottom : 30px;
+}
+
+.ticket-next {
+    background-color: #333331;
+    color: white;
+    border: 0px;
+    float: right;
+    font-size: 50px;
+    font-weight: bold;
+    margin-top: 25px;
+    margin-right: 50px;
+}
+
+.ticket-before{
+    font-weight:bold;
+    background-color: #333331;
+    color: white;
+    border: 0px;
+    float: left;
+    font-size: 50px;
+    margin-left: 50px;
+    margin-top: 25px;
+}
+
+
+
+body {
+    font-family: '맑은 고딕';
+    font-size: 20px;
+    line-height: 24px;
+    color: #333;
+    background: #ececec;
+    overflow-y: scroll;
+}
+
+.button_wrapper {
+    width: 600px;
+    margin: 20px auto;
+}
+
+.btnPurple.btnPush:hover {
+    box-shadow: 0px 0px 0px 0px #6D184B;
+}
+
+.btn_container {
+    display: block;
+    text-decoration-line: none;
+    position: relative;
+    margin:auto;
+    width: 120px;
+    padding: 0;
+    margin-bottom:60px;
+    font-weight: 600;
+    text-align: center;
+    line-height: 50px;
+    color: #FFF;
+    border-radius: 5px;
+    transition: all 0.2s ;
+    font-size: 15px;
+}
+#btnPurple {
+    background: #A74982;
+}
+#btnPurple.btnBorder {
+    box-shadow: 0px 0px 0px 0px #801e30;
+}
+
+#btnPurple.btnBorder:hover {
+    box-shadow: 0px 0px 0px 5px #802d3c;
+}
+
+.before_btn{
+    margin-top:90px;
+    margin-left:80px;
+    padding:8px;
+    font-size : 25px;
+    background-color:darkred;
+    color:white;
+    font-weight:bold;
+    border:none;
+    width:110px;
+    border-radius:10px;
+}
+
+.next_btn{
+    float:right;
+    margin-right:80px;
+    margin-top:90px;
+    padding:8px;
+    font-size : 25px;
+    background-color:darkred;
+    color:white;
+    font-weight:bold;
+    border:0px;
+    width:110px;
+    border-radius:10px;
+}
+.facam-image{
+    text-align: center;
+    margin-top: 70px;
+}

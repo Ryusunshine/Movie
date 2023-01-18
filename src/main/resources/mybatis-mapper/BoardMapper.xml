@@ -3,4 +3,120 @@
 
 <mapper namespace="com.example.movie.mapper.BoardMapper">
 
+    <select id="selectBoard" resultType="com.example.movie.dto.BoardDTO">
+        SELECT
+            id
+            , nickname
+            , title
+            , content
+            , indate
+        FROM
+            board
+        ORDER BY
+            id
+        DESC
+    </select>
+
+    <select id="selectBoardDetail" resultType="com.example.movie.dto.BoardDTO">
+        SELECT
+            id
+            , nickname
+            , title
+            , content
+            , indate
+        FROM
+            board
+        WHERE
+            id = #{id}
+    </select>
+
+    <insert id="insertBoard" parameterType="com.example.movie.dto.BoardDTO">
+        INSERT INTO board
+        (
+            member_id
+            , nickname
+            , title
+            , content
+        )
+        VALUES
+        (
+            #{member_id}
+            , #{nickname}
+            , #{title}
+            , #{content}
+        )
+    </insert>
+
+    <update id="updateBoard" parameterType="com.example.movie.dto.BoardDTO">
+        UPDATE board SET
+            title = #{title}
+            , content = #{content}
+            , indate = CURRENT_TIMESTAMP()
+        WHERE
+            id = #{id}
+    </update>
+
+    <delete id="deleteBoard" parameterType="com.example.movie.dto.BoardDTO">
+        DELETE FROM
+            board
+        WHERE
+            id = #{id}
+    </delete>
+
+    <select id="selectReply" resultType="com.example.movie.dto.ReplyDTO">
+        SELECT
+            id
+            , nickname
+            , content
+            , indate
+        FROM
+            reply
+        WHERE
+            board_id = #{board_id}
+        ORDER BY
+            id
+        DESC
+    </select>
+
+    <select id="selectReplyById" resultType="com.example.movie.dto.ReplyDTO">
+        SELECT
+             content
+        FROM
+            reply
+        WHERE
+            id = #{id}
+    </select>
+
+    <insert id="insertReply" parameterType="com.example.movie.dto.ReplyDTO">
+        INSERT INTO reply
+        (
+            member_id
+            , board_id
+            , nickname
+            , content
+        )
+        VALUES
+        (
+            #{member_id}
+            , #{board_id}
+            , #{nickname}
+            , #{content}
+        )
+    </insert>
+
+    <update id="updateReply" parameterType="com.example.movie.dto.ReplyDTO">
+        UPDATE reply SET
+            content = #{content}
+            , indate = CURRENT_TIMESTAMP()
+        WHERE
+            id = #{id}
+    </update>
+
+    <delete id="deleteReply" parameterType="com.example.movie.dto.ReplyDTO">
+        DELETE FROM
+            reply
+        WHERE
+            id = #{id}
+    </delete>
+
 </mapper>

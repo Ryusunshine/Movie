@@ -1,0 +1,371 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="x-ua-compatible" content="ie=edge">
+    <title>XENIUM ADMIN</title>
+    <meta name="description" content="">
+    <!-- favicon
+		============================================ -->
+    <link rel="shortcut icon" type="image/x-icon" href="../images/admin/favicon.ico">
+    <!-- Google Fonts
+		============================================ -->
+    <link href="https://fonts.googleapis.com/css?family=Roboto:100,300,400,700,900" rel="stylesheet">
+    <!-- Bootstrap CSS
+		============================================ -->
+    <link rel="stylesheet" href="../css/admin//bootstrap.min.css">
+    <!-- Bootstrap CSS
+		============================================ -->
+    <link rel="stylesheet" href="../css/admin//font-awesome.min.css">
+	<!-- nalika Icon CSS
+		============================================ -->
+    <link rel="stylesheet" href="../css/admin//nalika-icon.css">
+    <!-- owl.carousel CSS
+		============================================ -->
+    <link rel="stylesheet" href="../css/admin//owl.carousel.css">
+    <link rel="stylesheet" href="../css/admin//owl.theme.css">
+    <link rel="stylesheet" href="../css/admin//owl.transitions.css">
+    <!-- animate CSS
+		============================================ -->
+    <link rel="stylesheet" href="../css/admin//animate.css">
+    <!-- normalize CSS
+		============================================ -->
+    <link rel="stylesheet" href="../css/admin//normalize.css">
+    <!-- meanmenu icon CSS
+		============================================ -->
+    <link rel="stylesheet" href="../css/admin//meanmenu.min.css">
+    <!-- main CSS
+		============================================ -->
+    <link rel="stylesheet" href="../css/admin//main.css">
+    <!-- morrisjs CSS
+		============================================ -->
+    <link rel="stylesheet" href="../css/admin//morrisjs/morris.css">
+    <!-- mCustomScrollbar CSS
+		============================================ -->
+    <link rel="stylesheet" href="../css/admin//scrollbar/jquery.mCustomScrollbar.min.css">
+    <!-- metisMenu CSS
+		============================================ -->
+    <link rel="stylesheet" href="../css/admin//metisMenu/metisMenu.min.css">
+    <link rel="stylesheet" href="../css/admin//metisMenu/metisMenu-vertical.css">
+    <!-- calendar CSS
+		============================================ -->
+    <link rel="stylesheet" href="../css/admin//calendar/fullcalendar.min.css">
+    <link rel="stylesheet" href="../css/admin//calendar/fullcalendar.print.min.css">
+    <!-- style CSS
+		============================================ -->
+    <link rel="stylesheet" href="../css/admin/style.css">
+    <!-- responsive CSS
+		============================================ -->
+    <link rel="stylesheet" href="../css/admin//responsive.css">
+    <!-- modernizr JS
+		============================================ -->
+    <script src="../js/admin/vendor/modernizr-2.8.3.min.js"></script>
+    <script>
+    	function subForm(){
+    		// oEditors.getById["smartEditor"].exec("UPDATE_CONTENTS_FIELD", []);
+    		// var theaterDetail = $("#smartEditor").val();
+			var selectedTheater=$("#preselectedTheater").val();
+			var seats=$("#preseats").val();
+			var movieName = $("#premovieName").val();
+			var movieDate = $("#premovieDate").val();
+			var movieTime = $("#premovieTime").val();
+			var latitude = $("#prelatitude").val();
+    		var longitude = $("#prelongitude").val();
+
+    		// $("#theaterDetail").val(theaterDetail);
+    		$("#selectedTheater").val(selectedTheater);
+    		$("#seats").val(seats);
+    		$("#movieName").val(movieName);
+    		$("#movieDate").val(movieDate);
+    		$("#movieTime").val(movieTime);
+    		$("#latitude").val(latitude);
+    		$("#longitude").val(longitude);
+
+    		if($("#selectedTheater").val().length < 1){
+    			alert("빈칸없이 작성해주세요.");
+    			return;
+    		}
+
+            $.ajax({
+                url: "/admin/theaters",
+                type:"POST",
+                data:
+                    {
+                        "selectedTheater":selectedTheater,
+                        "seats":seats,
+                        "movieName":movieName,
+                        "movieDate":movieDate,
+                        "movieTime":movieTime,
+                        "latitude":latitude,
+                        "longitude":longitude
+                    },
+                success: function (data) {
+                   if(data=='success'){
+                       alert("등록 성공");
+                       location.href="/admin/theaterList";
+                   }else{
+                       alert("등록 실패");
+                   }
+                }
+            });
+
+    	}
+    </script>
+</head>
+
+<body>
+
+
+<head th:replace="/admin/common/navileft.html"></head>
+
+
+<!-- Start Welcome area -->
+    <div class="all-content-wrapper">
+        <div class="container-fluid">
+            <div class="row">
+                <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12" style="height:70px;">
+                    <div class="logo-pro">
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="header-advance-area">
+            <div class="header-top-area">
+                <div class="container-fluid">
+                    <div class="row">
+                        <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+                            <div class="header-top-wraper">
+                                <div class="row">
+                                    <div class="col-lg-1 col-md-0 col-sm-1 col-xs-12">
+                                        <div class="menu-switcher-pro">
+                                            <button type="button" id="sidebarCollapse" class="btn bar-button-pro header-drl-controller-btn btn-info navbar-btn">
+													<i class="icon nalika-menu-task"></i>
+												</button>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+
+            <head th:replace="/admin/common/navimoba.html"></head>
+
+        </div>
+       <form id="conForm" method="post" action="/admin/regiTheater">
+          <input name="selectedTheater" id="selectedTheater" type="hidden" class="form-control"/>
+          <input name="movieName" id="movieName" type="hidden" class="form-control"/>
+          <input name="movieDate" id="movieDate" type="hidden" class="form-control"/>
+          <input name="movieTime" id="movieTime" type="hidden" class="form-control"/>
+          <input name="seats" id="seats" type="hidden" class="form-control"/>
+          <input name="latitude" id="latitude" type="hidden" class="form-control"/>
+          <input name="longitude" id="longitude" type="hidden" class="form-control"/>
+       </form>
+         <div class="product-status mg-b-30">
+            <div class="container-fluid">
+                <div class="row">
+                    <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+                        <div class="sparkline12-list">
+                            <div class="sparkline12-hd">
+                                <div class="main-sparkline12-hd">
+                                    <h1 style="color:white;">극장등록</h1>
+                                </div>
+                            </div>
+                            <div class="sparkline12-graph">
+                                <div class="basic-login-form-ad">
+                                    <div class="row">
+                                        <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+                                            <div class="all-form-element-inner">
+                                                    <div class="form-group-inner">
+                                                    	 <div class="row" style="padding-top:18px;">
+                                                           <div class="col-lg-3 col-md-6 col-sm-6 col-xs-6">
+                                                            </div>
+                                                        </div>
+                                                        <div class="row" style="padding-top:18px;">
+                                                        </div>
+                                                        <div class="row" style="padding-top:28px;">
+                                                            <div class="col-lg-3 col-md-6 col-sm-6 col-xs-6">
+                                                                <label class="login2 pull-right pull-right-pro"  style="color:white;">극장명</label>
+                                                            </div>
+                                                            <div class="col-lg-6 col-md-12 col-sm-12 col-xs-12">
+                                                                <input style="color:white;"  name="preselectedTheater" id="preselectedTheater" type="text" class="form-control" />
+                                                            </div>
+                                                        </div>
+                                                        <div class="row" style="padding-top:28px;">
+                                                            <div class="col-lg-3 col-md-6 col-sm-6 col-xs-6">
+                                                                <label class="login2 pull-right pull-right-pro"  style="color:white;">좌석</label>
+                                                            </div>
+                                                            <div class="col-lg-6 col-md-12 col-sm-12 col-xs-12">
+                                                                <input style="color:white;"  name="preseats" id="preseats" type="text" class="form-control" />
+                                                            </div>
+                                                        </div>
+                                                        <div class="row" style="padding-top:18px;">
+                                                            <div class="col-lg-3 col-md-6 col-sm-6 col-xs-6">
+                                                                <label class="login2 pull-right pull-right-pro"  style="color:white;">영화제목</label>
+                                                            </div>
+                                                            <div class="col-lg-6 col-md-12 col-sm-12 col-xs-12">
+                                                                <input style="color:white;" value="" name="premovieName" id="premovieName"  type="text" class="form-control" />
+                                                            </div>
+                                                        </div>
+                                                        <div class="row" style="padding-top:18px;">
+                                                            <div class="col-lg-3 col-md-6 col-sm-6 col-xs-6">
+                                                                <label class="login2 pull-right pull-right-pro"  style="color:white;">상영날짜</label>
+                                                            </div>
+                                                            <div class="col-lg-6 col-md-12 col-sm-12 col-xs-12">
+                                                                <input style="color:white;" name="premovieDate" id="premovieDate" type="date" class="form-control" />
+                                                            </div>
+                                                        </div>
+                                                        <div class="row" style="padding-top:18px;">
+                                                            <div class="col-lg-3 col-md-6 col-sm-6 col-xs-6">
+                                                                <label class="login2 pull-right pull-right-pro"  style="color:white;">상영시간</label>
+                                                            </div>
+                                                            <div class="col-lg-6 col-md-12 col-sm-12 col-xs-12">
+                                                                <input style="color:white;" name="premovieTime" id="premovieTime" type="time" class="form-control" />
+                                                            </div>
+                                                        </div>
+                                                        <div class="row" style="padding-top:18px;">
+                                                            <div class="col-lg-3 col-md-6 col-sm-6 col-xs-6">
+                                                                <label class="login2 pull-right pull-right-pro"  style="color:white;">위도</label>
+                                                            </div>
+                                                            <div class="col-lg-6 col-md-12 col-sm-12 col-xs-12">
+                                                                <input style="color:white;" name="prelatitude" id="prelatitude" type="text" class="form-control" />
+                                                            </div>
+                                                        </div>
+                                                        <div class="row" style="padding-top:18px;">
+                                                            <div class="col-lg-3 col-md-6 col-sm-6 col-xs-6">
+                                                                <label class="login2 pull-right pull-right-pro"  style="color:white;">경도</label>
+                                                            </div>
+                                                            <div class="col-lg-6 col-md-12 col-sm-12 col-xs-12">
+                                                                <input style="color:white;" name="prelongitude" id="prelongitude" type="text" class="form-control" />
+                                                            </div>
+                                                        </div>
+
+<!--                                                        <div class="row" style="padding-top:18px;">-->
+<!--                                                        	<div class="col-lg-3 col-md-12 col-sm-12 col-xs-12">-->
+<!--                                                                <label class="login2 pull-right pull-right-pro"  style="color:white;">극장상세설명</label>-->
+<!--                                                            </div>-->
+<!--		                                                    <div class="col-lg-6 col-md-6 col-sm-6 col-xs-6">-->
+<!--				                                                 -->
+<!--				                                                 <div class="jsx-2303464893 editor"> -->
+<!--																	<div class="fr-box fr-basic fr-top" role="application"> -->
+<!--																		<div class="fr-wrapper show-placeholder" dir="auto" style="overflow: scroll;background:white;"> -->
+<!--																			<textarea name="content" id="smartEditor" style="width: 100%; height: 412px; background:white;"></textarea> -->
+<!--																		</div> -->
+<!--																	</div> -->
+<!--																</div>-->
+<!--				                                            </div>-->
+<!--                                                        </div>-->
+                                                       
+                                                    </div>
+                                                    <div class="form-group-inner">
+                                                        <div class="row">
+                                                            <div class="col-lg-3 col-md-3 col-sm-3 col-xs-12">
+                                                       </div>
+                                                            <div class="col-lg-9 col-md-9 col-sm-9 col-xs-12">
+                                                               <button type="button" onclick="subForm()" class="btn btn-custon-four btn-success" style="padding: 1px 15px">극장등록하기</button>
+                                                       
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="footer-copyright-area">
+            <div class="container-fluid">
+                <div class="row">
+                    <div class="col-lg-12">
+                        <div class="footer-copy-right">
+                            <p>Copyright © 2021 XENIUM All rights reserved.</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+	<script src="../se2/js/HuskyEZCreator.js"></script>
+    <!-- jquery
+		============================================ -->
+    <script src="../js/admin/vendor/jquery-1.12.4.min.js"></script>
+    <!-- bootstrap JS
+		============================================ -->
+    <script src="../js/admin/bootstrap.min.js"></script>
+    <!-- wow JS
+		============================================ -->
+    <script src="../js/admin/wow.min.js"></script>
+    <!-- price-slider JS
+		============================================ -->
+    <script src="../js/admin/jquery-price-slider.js"></script>
+    <!-- meanmenu JS
+		============================================ -->
+    <script src="../js/admin/jquery.meanmenu.js"></script>
+    <!-- owl.carousel JS
+		============================================ -->
+    <script src="../js/admin/owl.carousel.min.js"></script>
+    <!-- sticky JS
+		============================================ -->
+    <script src="../js/admin/jquery.sticky.js"></script>
+    <!-- scrollUp JS
+		============================================ -->
+    <script src="../js/admin/jquery.scrollUp.min.js"></script>
+    <!-- mCustomScrollbar JS
+		============================================ -->
+    <script src="../js/admin/scrollbar/jquery.mCustomScrollbar.concat.min.js"></script>
+    <script src="../js/admin/scrollbar/mCustomScrollbar-active.js"></script>
+    <!-- metisMenu JS
+		============================================ -->
+    <script src="../js/admin/metisMenu/metisMenu.min.js"></script>
+    <script src="../js/admin/metisMenu/metisMenu-active.js"></script>
+    <!-- sparkline JS
+		============================================ -->
+    <script src="../js/admin/sparkline/jquery.sparkline.min.js"></script>
+    <script src="../js/admin/sparkline/jquery.charts-sparkline.js"></script>
+    <!-- calendar JS
+		============================================ -->
+    <script src="../js/admin/calendar/moment.min.js"></script>
+    <script src="../js/admin/calendar/fullcalendar.min.js"></script>
+    <script src="../js/admin/calendar/fullcalendar-active.js"></script>
+	<!-- float JS
+		============================================ -->
+    <script src="../js/admin/flot/jquery.flot.js"></script>
+    <script src="../js/admin/flot/jquery.flot.resize.js"></script>
+    <script src="../js/admin/flot/curvedLines.js"></script>
+    <script src="../js/admin/flot/flot-active.js"></script>
+    <!-- plugins JS
+		============================================ -->
+    <script src="../js/admin/plugins.js"></script>
+    <!-- main JS
+		============================================ -->
+    <script src="../js/admin/main.js"></script>
+
+    <script>
+
+var oEditors = []; 
+nhn.husky.EZCreator.createInIFrame({ 
+	oAppRef : oEditors, 
+	elPlaceHolder : "smartEditor", 
+	//저는 textarea의 id와 똑같이 적어줬습니다. 
+	sSkinURI : "../se2/SmartEditor2Skin.html", 
+	//경로를 꼭 맞춰주세요! 
+	fCreator : "createSEditor2", 
+	htParams : { 
+		// 툴바 사용 여부 (true:사용/ false:사용하지 않음) 
+		bUseToolbar : true,
+		// 입력창 크기 조절바 사용 여부 (true:사용/ false:사용하지 않음) 
+		bUseVerticalResizer : false, 
+		// 모드 탭(Editor | HTML | TEXT) 사용 여부 (true:사용/ false:사용하지 않음) 
+		bUseModeChanger : true } });
+    </script>
+</body>
+
+</html>

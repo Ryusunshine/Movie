@@ -25,7 +25,9 @@ public class SwaggerConfig {
 
         List<Predicate<RequestHandler>> predicateList = new ArrayList<>();
         predicateList.add(RequestHandlerSelectors.basePackage("com.example.movie.controller"));
-        predicateList.add(RequestHandlerSelectors.basePackage("com.example.movie.login.controller"));
+        predicateList.add(RequestHandlerSelectors.basePackage("com.example.movie.admin"));
+        predicateList.add(RequestHandlerSelectors.basePackage("com.example.movie.map"));
+        predicateList.add(RequestHandlerSelectors.basePackage("com.example.movie.page"));
 
         return new Docket(DocumentationType.SWAGGER_2)
                 .apiInfo(swaggerInfo())

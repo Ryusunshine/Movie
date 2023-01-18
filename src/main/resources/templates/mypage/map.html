@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+  <meta charset="UTF-8">
+  <title>Title</title>
+</head>
+<body>
+<div id="map" style="width:500px;height:400px;"></div>
+<script type="text/javascript" src="//dapi.kakao.com/v2/maps/sdk.js?appkey=68565d2b540d8435e5af74a97d8dd662"></script>
+<!--<script type="text/javascript" src="//dapi.kakao.com/v2/maps/sdk.js?appkey=68565d2b540d8435e5af74a97d8dd662&libraries=LIBRARY"></script>-->
+<!--<script type="text/javascript" src="//dapi.kakao.com/v2/maps/sdk.js?appkey=68565d2b540d8435e5af74a97d8dd662&libraries=services,clusterer,drawing"></script>-->
+<script th:inline="javascript">
+  let test = [[ ${theater} ]];
+
+  var container = document.getElementById('map');
+  var options = {
+    center: new kakao.maps.LatLng(test.latitude, test.longitude),
+    level: 3
+  };
+
+  var map = new kakao.maps.Map(container, options);
+
+  var makerPosition = options.center;
+
+  var marker = new kakao.maps.Marker({
+    position: makerPosition,
+    clickable: true
+  });
+
+  marker.setMap(map);
+
+  var iwContent = '<span class="info-title">영화관</span>',
+          iwRemovable = true;
+
+  var infowindow = new kakao.maps.InfoWindow({
+    content: iwContent,
+    removable: iwRemovable
+  });
+
+  kakao.maps.event.addListener(marker, 'click', function () {
+    infowindow.open(map, marker)
+  });
+</script>
+</body>
+</html>

@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Title</title>
+</head>
+<body>
+
+<script src="https://code.jquery.com/jquery-3.5.1.js"></script>
+<script>
+  $(document).ready(function() {
+
+    init();
+
+  });
+
+  function init() {
+    if (confirm("회원 탈퇴 하시겠습니까?")) {
+      $.ajax({
+        url: '/member/withdrawal',
+        type: 'POST',
+        success: function(resp) {
+          if (resp == 'success') {
+            document.location.href="/member/login";
+          }
+        }
+      });
+    } else {
+      document.location.href="/member"
+    }
+
+  }
+</script>
+</body>
+</html>

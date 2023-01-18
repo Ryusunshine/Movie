@@ -2,5 +2,109 @@
         "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 
 <mapper namespace="com.example.movie.mapper.MovieMapper">
+    <insert id="insertDailyMovie" parameterType="com.example.movie.dto.DailyMovieDTO">
+        INSERT INTO DAILY_BOXOFFICE
+            (movie_cd, movie_nm, open_dt, movie_rank, audi_acc)
+        VALUES
+            (#{movieCd},#{movieNm},#{openDt},#{movieRank},#{audiAcc})
+    </insert>
+
+    <select id="selectMovieName" resultType="com.example.movie.dto.DailyMovieDTO" parameterType="Integer">
+        SELECT DISTINCT
+            movie_nm
+        FROM
+            DAILY_BOXOFFICE
+        WHERE
+            movie_cd = #{movie_id}
+    </select>
+
+    <select id="selectMovieImg" resultType="com.example.movie.dto.MovieDTO" parameterType="Integer">
+        SELECT DISTINCT
+            movie_img
+            ,movie_cd
+        FROM
+            movie_detail
+        WHERE
+            movie_cd = #{movie_id}
+    </select>
+
+    <insert id="insertMovieDetail" parameterType="com.example.movie.dto.MovieDTO">
+        INSERT IGNORE INTO MOVIE_DETAIL
+            (movie_cd, movie_nm, movie_nm_en, cmp_movie_nm,
+            prdt_year, showtime, open_dt, type_nm,
+            nation_nm, genre_nm, director_nm, director_nm_en,
+            company_nm, watch_grade_nm, actor_nm, actor_nm_en)
+        VALUES
+            ( #{movieCd}, #{movieNm}, #{movieNmEn}, #{cmpMovieNm},
+            #{prdtYear}, #{showtime}, #{openDt}, #{typeNm},
+            #{nationNm}, #{genreNm}, #{directorNm}, #{directorNmEn},
+            #{companyNm}, #{watchGradeNm}, #{actorNm}, #{actorNmEn})
+    </insert>
+
+    <select id="selectDailyMovieCode" resultType="HashMap">
+        SELECT DISTINCT
+            movie_cd
+        FROM
+            DAILY_BOXOFFICE
+    </select>
+
+    <select id="selectDateInsertChk" resultType="Integer">
+        SELECT 1
+        FROM DAILY_BOXOFFICE
+        WHERE indate = current_date
+            limit 1;
+    </select>
+
+    <select id="selectAllMovies" resultType="com.example.movie.dto.MovieDTO">
+        select movie_cd, movie_nm, movie_nm_en, cmp_movie_nm,
+               prdt_year, showtime, open_dt, type_nm,
+               nation_nm, genre_nm, director_nm, director_nm_en,
+               company_nm, watch_grade_nm, movie_img, actor_nm, actor_nm_en, summary
+        FROM MOVIE_DETAIL
+    </select>
+
+    <select id="selectMovieDetailByMovieCode" parameterType="Integer" resultType="com.example.movie.dto.MovieDTO">
+        select movie_nm, movie_nm_en, cmp_movie_nm,
+               prdt_year, showtime, open_dt, type_nm,
+               nation_nm, genre_nm, director_nm, director_nm_en,
+               company_nm, watch_grade_nm, movie_img, actor_nm, actor_nm_en, summary
+        FROM MOVIE_DETAIL
+        WHERE movie_cd = #{movieCd}
+    </select>
+
+    <select id="selectMovieDtMovieNmDirNm" resultType="com.example.movie.dto.MovieDTO">
+        SELECT movie_nm,
+               movie_nm_en,
+               director_nm,
+               prdt_year
+        FROM movie_detail;
+    </select>
+
+    <update id="updateMvDtImgAndSummary" parameterType="HashMap">
+        UPDATE movie_detail
+        SET movie_img = #{movieImg},
+            summary = #{summary}
+        WHERE open_dt = #{openDt}
+        AND (director_nm = #{directorNm} or cmp_movie_nm = #{cmpMovieNm});
+    </update>
+
+    <select id="selectDailyRank" resultType="HashMap">
+        SELECT a.movie_img,
+               b.movie_rank,
+               a.watch_grade_nm,
+               a.movie_nm,
+               b.movie_cd
+        FROM movie_detail a INNER JOIN daily_boxoffice b ON a.movie_cd = b.movie_cd
+        WHERE b.indate = current_date;
+    </select>
+
+    <select id="selectMovieNameByCode" resultType="com.example.movie.dto.DailyMovieDTO" parameterType="Integer">
+        SELECT DISTINCT
+            movie_nm
+        FROM
+            DAILY_BOXOFFICE
+        WHERE
+            movie_cd = #{movie_id}
+    </select>
 
 </mapper>

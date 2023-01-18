@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+  <meta charset="UTF-8">
+  <title>이름 변경</title>
+</head>
+<body>
+<div id="find_id" class="find_idpw">
+  <h1 class="tit">이름변경하기</h1>
+  <div class="find-info">
+    <form id="updateNameForm" method="POST">
+      <table>
+        <colgroup>
+          <col width="135"><col width="*">
+        </colgroup>
+        <tbody>
+        <tr class="user-name" height="38" style="border-bottom: 1px solid;">
+          <th><div>기존 이름</div></th>
+          <td>
+            <div>
+              <input th:if="${memberDTO != null}" th:value="${memberDTO.getName()}" type="text" id="originName" name="originName" class="MS_input_txt" value="" maxlength="30" title="기존 이름" readonly>
+            </div>
+          </td>
+        </tr>
+        <tr height="38" id="find_id_email_wrap">
+          <th><div>새 이름</div></th>
+          <td>
+            <div>
+              <input type="text" id="newName" name="name" class="MS_input_txt" value="" maxlength="80" title="새 이름" >
+            </div>
+          </td>
+        </tr>
+        </tbody>
+      </table>
+      <input type="button" id="submitButton" value="수정하기" onclick="submitName();">
+    </form>
+  </div>
+</div>
+<script src="https://code.jquery.com/jquery-3.5.1.js"></script>
+<script>
+  function submitName(){
+    var name = $("#newName").val();
+
+    $.ajax({
+      type:"POST",
+      url:"/member/user-edit/name",
+      data : {
+        'name' : name
+      },
+      success: function (data) {
+        alert("success");
+        opener.parent.location.reload();
+        window.open('', '_self').close();
+      },
+      error: function (e) {
+        alert("failed");
+      },
+    })
+  }
+</script>
+</body>
+</html>

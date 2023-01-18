@@ -1,19 +1,21 @@
 package com.example.movie.dto;
 
-import lombok.AllArgsConstructor;
-import lombok.Getter;
-import lombok.NoArgsConstructor;
-import lombok.Setter;
+import lombok.*;
+
+import java.time.LocalDateTime;
 
 @AllArgsConstructor
 @NoArgsConstructor
 @Getter
 @Setter
+@ToString
 public class CommentDTO {
 
     private Long id;
+    private Long memberId;
+    private Long movieId;
     private String content;
-    private int indate;
+    private LocalDateTime indate;
     private int good;
     private int bad;
 

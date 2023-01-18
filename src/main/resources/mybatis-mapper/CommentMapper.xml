@@ -2,5 +2,81 @@
         "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 
 <mapper namespace="com.example.movie.mapper.CommentMapper">
+    <select id="selectComment" parameterType="Long" resultType="com.example.movie.dto.CommentDTO">
+        SELECT
+            id
+            ,member_id
+            ,movie_id
+            ,content
+            ,indate
+            ,good
+            ,bad
+        FROM
+            comment
+        WHERE
+            member_id = #{member_id}
+        ORDER BY
+            indate
+        DESC
+    </select>
 
+    <select id="selectMovieId" parameterType="Long" resultType="Long">
+        SELECT
+            movie_id
+        FROM
+            comment
+        WHERE
+            member_id = #{member_id}
+        ORDER BY
+            indate
+        DESC
+    </select>
+
+    <delete id="deleteComment" parameterType="long">
+        delete from comment where id=#{id}
+    </delete>
+
+    <insert id="insertComment" parameterType="com.example.movie.dto.CommentDTO">
+        insert into comment
+            (member_id, movie_id, content)
+        values
+            (#{memberId}, #{movieId}, #{content})
+    </insert>
+
+    <update id="updateComment" parameterType="com.example.movie.dto.CommentDTO">
+        update comment set
+            content=#{content}
+        where id=#{id}
+    </update>
+
+    <select id="selectAllCommentByMovieId" parameterType="long" resultType="com.example.movie.dto.CommentDTO">
+        select id, member_id, movie_id, content, indate, good, bad
+        from comment
+        where movie_id=#{movieId}
+        order by indate desc
+    </select>
+
+    <select id="selectCommentByMemberId" parameterType="long" resultType="com.example.movie.dto.CommentDTO">
+        select id, member_id, movie_id, content, indate, good, bad
+        from comment
+        where member_id=#{memberId}
+    </select>
+
+    <select id="selectCommentByCommentId" parameterType="long" resultType="com.example.movie.dto.CommentDTO">
+        select id, member_id, movie_id, content, indate, good, bad
+        from comment
+        where id=#{id}
+    </select>
+
+    <update id="updateGoodNumOneUpByCommentId" parameterType="long">
+        update comment set
+            good=((select tmp_table.nowgood from (select good nowgood from comment where id=#{id}) tmp_table)+1)
+        where id=#{id};
+    </update>
+
+    <update id="updateBadNumOneUpByCommentId" parameterType="long">
+        update comment set
+            bad=((select tmp_table.nowbad from (select bad nowbad from comment where id=#{id}) tmp_table)+1)
+        where id=#{id};
+    </update>
 </mapper>

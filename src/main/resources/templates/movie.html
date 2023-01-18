@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>전체 영화목록</title>
+    <script src="https://code.jquery.com/jquery-3.5.0.js"></script>
+</head>
+<body>
+<!-- TODO : 전체 영화목록 출력하기 -->
+<!--<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>-->
+
+<div id="movieList">
+
+</div>
+
+
+<script>
+    $(document).ready(function() {
+        init();
+
+    });
+
+    function init(){
+        $.ajax({
+            // type: "GET",
+            url: "/api/movies",
+            // dataType: "json",
+            success: function (data) {
+                let con='';
+                for(let i=0;i<data.length;i++){
+
+                    // <div className="moive">
+                    //     <a href="#">
+                    //         <img src="https://img.cgv.co.kr/Movie/Thumbnail/Poster/000086/86072/86072_320.jpg" width="197" height="260">
+                    //     </a>
+                    //     <p><a href="#">
+                    //         아바타 : 물의 길
+                    //     </a></p>
+                    //     <p>개봉일 : 2022-12-24</p>
+                    // </div>
+
+                    con+='<div className="moive">';
+                    con+='<a href="/movie/'+data[i].movieCd+'">';
+                    con+='<img src="'+data[i].image+'" width="197" height="260">';
+                    con+='</a>';
+                    con+='<p><a href="/movie/'+data[i].movieCd+'">';
+                    con+=data[i].movieNm;
+                    con+='</a></p>';
+                    con+='<p>개봉일 : '+data[i].openDt+'</p>';
+                    con+='</div>';
+
+                }
+                $('#movieList').html(con);
+            },
+            error: function(xhr) {
+                console.log("실패다ㅠ");
+                console.log(textStatus);
+                alert("에러코드 = "+xhr.status);
+            }
+        });
+    }
+
+</script>
+</body>
+</html>

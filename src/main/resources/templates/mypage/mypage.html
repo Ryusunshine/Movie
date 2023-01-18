@@ -1,0 +1,114 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" lang="ko">
+<head>
+    <title id="ctl00_ctl00_headerTitle">나의 참여한 이벤트 &lt; My CGV | 영화 그 이상의 감동. CGV</title>
+</head>
+<body class="">
+
+<div class="skipnaiv">
+    <a href="#contents" id="skipHeader">메인 컨텐츠 바로가기</a>
+</div>
+<div id="cgvwrap">
+    <div class="cgv-ad-wrap" id="cgv_main_ad">
+        <div id="TopBarWrapper" class="sect-head-ad">
+            <div class="top_extend_ad_wrap">
+                <div class="adreduce" id="adReduce">
+                    <iframe src="//ad.cgv.co.kr/NetInsight/html/CGV/CGV_201401/sub@TopBar_EX" width="100%" height="80" title="" frameborder="0" scrolling="no" topmargin="0" leftmargin="0" marginwidth="0" marginheight="0" name="TopBanner" id="TopBanner"></iframe>
+                </div>
+                <div class="adextend" id="adExtend"></div>
+            </div><!-- //.top_extend_ad_wrap -->
+        </div>
+    </div>
+    <head th:replace="/mypage/common/header.html"></head>
+    <div id="contaniner" class=""><!-- 벽돌 배경이미지 사용 시 class="bg-bricks" 적용 / 배경이미지가 없을 경우 class 삭제  -->
+        <div id="contents" class="">
+            <div class="sect-common" style="height: 300px; margin-top: 25px;">
+                <input type="hidden" id="isTown" name="isTown" value="Y" />
+                <input type="hidden" id="userTownMemberInfo" name="userTownMemberInfo" value="" />
+                <div class="mycgv-info-wrap">
+                    <div class="skipnaiv" >
+                        <a href="#menu" id="skipPersoninfo">개인화영역 건너띄기</a>
+                    </div>
+                    <div class="sect-person-info">
+                        <h2 class="hidden">개인화 영역</h2>
+                        <div class="box-contents newtype">
+                            <div class="person-info">
+                                <strong th:if="${memberDTO != null}" th:text="${memberDTO.getName()}">이름</strong>
+                                <em th:if="${memberDTO != null}" th:text="${memberDTO.getUserId()}">아이디</em>
+                            </div>
+                            <div class="grade-info">
+                                <p style="margin-bottom:4px;color: #342929;font-family: 'NanumBarunGothicBold', '맑은 고딕', '돋움', Dotum, sans-serif;font-size: 20px;line-height: 20px;">
+                                    고객님은 <strong class="txt-purple">일반</strong> 입니다.
+                                </p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="cols-content" id="menu">
+                <div class="col-aside">
+                    <h2>MY CGV 서브메뉴</h2>
+                    <div class="snb">
+                        <ul>
+                            <li >
+                                <a href="/member" >MY HOME <i></i></a>
+                            </li>
+
+                            <li >
+                                <a href="/member/user-detail" >개인정보 조회 <i></i></a>
+                            </li>
+
+                            <li >
+                                <a href="/member/user-comment" >내가 쓴 댓글 조회 <i></i></a>
+                            </li>
+
+                            <li >
+                                <a href="/member/user-order" >예매 내역 조회 <i></i></a>
+                            </li>
+                            <li >
+                                <a href="/member/withdrawal" title="현재선택">회원 탈퇴<i></i></a>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+                <head th:replace="/mypage/mypage-th.html"></head>
+                <!-- detail 끝 -->
+            </div>
+            <script type="text/javascript">
+                //<![CDATA[
+                (function ($) {
+                    $(function () {
+                        //개인화영역스킵
+                        $('#skipPersoninfo').on('click', function () {
+                            var $ctn = $('#menu');
+                            $ctn.attr({
+                                tabIndex: -1
+                            }).focus();
+                            return false;
+                        });
+                        //mycgv 메뉴스킵
+                        $('#skipMycgvMenu').on('click', function () {
+                            var $ctn = $('#mycgv_contents');
+                            $ctn.attr({
+                                tabIndex: -1
+                            }).focus();
+                            return false;
+                        });
+
+                        //my cgv 상단영역 skip처리
+                        var isGoContainer = "False";
+                        if (isGoContainer == "True") {
+                            location.href = location.href + "#contaniner";
+                        }
+
+                    });
+                })(jQuery);
+            </script>
+        </div>
+    </div>
+</div>
+<footer>
+</footer>
+<script type="text/javascript" src="https://img.cgv.co.kr/R2014//js/system/crypto.js"></script>
+</body>
+</html>

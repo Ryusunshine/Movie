@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="css/showticket.css">
+    <link rel="stylesheet" href="http://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css">
+    <script src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
+    <link rel='stylesheet'
+          href='//cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/css/toastr.min.css' />
+    <script
+            src='//cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/js/toastr.min.js'></script>
+    <link rel="stylesheet"
+          href="fonts/material-design-iconic-font/css/material-design-iconic-font.min.css">
+    <!-- MATERIAL DESIGN ICONIC FONT -->
+
+</head>
+
+<body>
+<head th:replace="/mypage/common/header.html">
+
+<div>
+    <div class="my-page-container">
+        <div class="my-page-wrapper">
+            <div class="my-page-header">예매 정보</div>
+            <div class="complete-message"> 예매가 완료되었습니다.</div>
+            <div class="poster">
+                <figure>
+                <img th:if="${movie != null}" th:src="${movie.movieImg}" alt="영화 포스터">
+                </figure>
+            </div>
+            <div class="movie-reserve-list">
+                <div class="movie-reserve">
+                    <div class="movie-reserve-age">예매번호 103296-392873</div>
+                    <div class="movie-reserve-title" th:text="${ticket.movieTitle}"></div>
+                    <div class="movie-reserve-theater-wrapper">
+                        <span th:text="${ticket.selectedTheater}"></span>
+                        &nbsp;/&nbsp;
+                        <span th:text="${ticket.theaterDetail}"></span>
+                        <span class="ticket-number" th:text="${ticket.ticketNumber}">장</span>
+                    </div>
+                    <div class="movie-reserve-seats" th:text="${ticket.selectedSeat}"></div>
+                    <div class="movie-reserve-date-wrapper">
+                        <span class="movie-reserve-date" th:text="${ticket.movieDate}"></span>
+                        <span class="movie-reserve-runningTime" th:text="${ticket.movieStartTime}"></span>
+                    </div>
+                    <div class="movie"></div>
+
+                    <div class="pay-information-wrapper">
+                        <div class="pay-information-date-wrapper">
+                            <div class="pay-information-date-title">결제 시간</div>
+                            <span class="pay-information-date" th:text="${ticket.payDate}"></span>
+                        </div>
+
+                        <div class="pay-information-money-wrapper">
+                            <div class="pay-information-money-title">결제 금액</div>
+                            <span class="pay-information-money" th:text="${ticket.payMoney}">원 </span>
+                        </div>
+
+                        <div class="barcode-wrapper">
+                            <img src="images/barcode.png">
+                        </div>
+
+                        <form action="moveKakao.do" class="seatForm" method="POST">
+                            <input type="hidden" class="title" name="movieTitle">
+                            <input type="hidden" class="selectedTheater" name="selectedTheater">
+                            <input type="hidden" class="reserveDate" name="movieDate">
+                            <input type="hidden" class="runningTime" name="movieStartTime">
+                            <input type="hidden" class="ticketNumber" name="ticketNumber">
+                            <input type="hidden" class="selectedSeat" name="selectedSeat">
+                            <input type="hidden" class="payMoney" name="payMoney">
+                        </form>
+                    </div>
+                </div>
+
+            </div>
+
+        </div>
+
+    </div>
+    <div class="btn_group">
+        <button class="main_btn" onclick="location.href='/';">홈으로 가기</button>
+    </div>
+</div>
+
+
+<script src="js/seat.js"></script>
+<div class = "me-image">
+    <img src="./image/me.png">
+</div>
+
+</body>
+
+</html>
