@@ -190,3 +190,27 @@ moveSeatButton.addEventListener('click', function() {
         );
     }
 });
+
+reserveDate.addEventListener('click', function() {
+
+
+    if (!!inputTitle.value &&
+        !!inputSelectedTheater.value &&
+        !!inputReserveDate.value){
+
+        $.ajax({
+            url:"findTheaters",
+            type:"POST",
+            contentType: "application/json",
+            data: JSON.stringify({
+                "movieName" : inputTitle.value,
+                "selectedTheater" : inputSelectedTheater.value,
+                "movieDate" : inputReserveDate.value
+                }),
+            success: function(data){
+                alert(JSON.stringify(data));
+            }
+        });
+    }
+
+});

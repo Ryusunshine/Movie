@@ -16,6 +16,7 @@
         SELECT
             id
              ,selectedTheater
+             ,theaterDetail
              ,seats
              ,movieName
              ,movieDate
@@ -30,6 +31,7 @@
         SELECT
             id
              ,selectedTheater
+             ,theaterDetail
              ,seats
              ,movieName
              ,movieDate
@@ -52,8 +54,14 @@
 
     <insert id="insertTheater" parameterType="com.example.movie.dto.TheaterDTO" useGeneratedKeys="true" keyProperty="id">
         INSERT INTO theater
-        (selectedTheater, latitude, longitude, seats, movieName, movieDate, movieTime)
+        (selectedTheater, latitude, longitude, theaterDetail, seats, movieName, movieDate, movieTime)
         VALUES
-        (#{selectedTheater}, #{latitude}, #{longitude}, #{seats}, #{movieName}, #{movieDate}, #{movieTime})
+        (#{selectedTheater}, #{latitude}, #{longitude}, #{theaterDetail}, #{seats}, #{movieName}, #{movieDate}, #{movieTime})
     </insert>
+
+    <select id="findTheaters" parameterType="String" resultType="com.example.movie.dto.TheaterDTO">
+        SELECT *
+        FROM theater
+        WHERE selectedTheater = #{selectedTheater} AND movieName = #{movieName} AND movieDate = #{movieDate}
+    </select>
 </mapper>

@@ -1,10 +1,8 @@
 package com.example.movie.controller;
 
-import com.example.movie.dto.InfoDTO;
-import com.example.movie.dto.MemberDTO;
-import com.example.movie.dto.MovieDTO;
-import com.example.movie.dto.TicketDTO;
+import com.example.movie.dto.*;
 import com.example.movie.service.MemberService;
+import com.example.movie.service.TheaterService;
 import com.example.movie.service.TicketService;
 import com.google.gson.Gson;
 import io.swagger.annotations.Api;
@@ -21,6 +19,7 @@ import springfox.documentation.annotations.ApiIgnore;
 import javax.servlet.http.HttpSession;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Map;
 
 @Api(tags = {"예매 서비스"}, description = "예매 기능을 담당합니다.")
 @Controller
@@ -28,11 +27,13 @@ public class TicketController {
 
     private final TicketService ts;
     private final MemberService ms;
+    private final TheaterService ths;
 
     @Autowired
-    public TicketController(TicketService ts, MemberService ms) {
+    public TicketController(TicketService ts, MemberService ms,TheaterService ths) {
         this.ts = ts;
         this.ms = ms;
+        this.ths = ths;
     }
 
     private static Logger logger = LoggerFactory.getLogger(TicketController.class);
@@ -104,7 +105,6 @@ public class TicketController {
         model.addAttribute("ticket", dto);
         model.addAttribute("movie", movie);
 
-
         return "payComplete";
     }
 
@@ -124,6 +124,21 @@ public class TicketController {
     @PutMapping("/ticket")
     public String updateOrderStatus(Long id) {
         return ts.updateOrderStatus(id);
+    }
+
+    @ResponseBody
+    @PostMapping("findTheaters")
+    public List<TheaterDTO> findTheaters(@RequestBody Map<String, Object> param, Model model){
+        String selectedTheater = (String)param.get("selectedTheater");
+        String movieName = (String)param.get("movieName");
+        String movieDate = (String)param.get("movieDate");
+        logger.info("ajax 실행 = " + selectedTheater + " " + movieName + " "+ movieDate);
+        List<TheaterDTO> theaters = ths.findTheaters(selectedTheater, movieName, movieDate);
+        theaters.stream().forEach(n-> logger.info("ajax 결과값 = " + n.getMovieTime() +" " + n.getSeats() +" " + n.getTheaterDetail()));
+
+        model.addAttribute("theaters", theaters);
+
+        return theaters;
     }
 }
 

@@ -13,7 +13,6 @@ public class TheaterRepository {
     @Autowired
     TheaterMapper tm;
 
-
     public List<TheaterDTO> selectTheaters() {
         return tm.selectTheaters();
     }
@@ -22,7 +21,6 @@ public class TheaterRepository {
         return tm.selectTheaterData(selectedTheater);
     }
 
-
     public int deleteTheater(TheaterDTO theaterDTO) {
         return tm.deleteTheater(theaterDTO);
     }
@@ -30,4 +28,8 @@ public class TheaterRepository {
     public int insertTheater(TheaterDTO theaterDTO) {
         return tm.insertTheater(theaterDTO);
     }
+
+    public int insertSeat(TheaterDTO theaterDTO){return tm.insertSeat(theaterDTO);}
+
+    public List<TheaterDTO> findTheaters(String selectedTheater, String movieName, String movieDate){return tm.findTheaters(selectedTheater, movieName, movieDate);}
 }

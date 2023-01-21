@@ -41,6 +41,7 @@
                     <button class="theater-location">강원(5)</button>
                 </div>
                 <div class="theater-place-wrapper">
+                    <button class="theater-place">강남</button>
                     <button class="theater-place">천호</button>
                     <button class="theater-place">강변</button>
                     <button class="theater-place">건대입구</button>
@@ -65,43 +66,22 @@
     </div>
     <div class="day-part">
         <div class="reserve-title">날짜</div>
-        <div class="reserve-date"></div>
+        <button type="button" class="reserve-date"></button>
     </div>
     <div class="time-part">
         <div class="reserve-title">시간</div>
         <div class="reserve-time">
-            <div class="reserve-where">4관(Laser) 6층(총 240석) </div>
-            <div class="reserve-time-wrapper">
+            <div id="theaters" th:if="${theaters != null}" th:each="theater, i:${theaters}">
+                <div class="reserve-where" th:text="${theater.theaterDetail}"> </div>
+                <div class="reserve-time-wrapper">
                 <button class="reserve-time-button">
-                    <span class="reserve-time-want">12:20</span>
-                    <span class="reserve-time-remain">240석</span>
-                </button>
-                <button class="reserve-time-button">
-                    <span class="reserve-time-want">14:20</span>
-                    <span class="reserve-time-remain">240석</span>
-                </button>
-                <button class="reserve-time-button">
-                    <span class="reserve-time-want">16:20</span>
-                    <span class="reserve-time-remain">240석</span>
-                </button>
-                <button class="reserve-time-button">
-                    <span class="reserve-time-want">18:20</span>
-                    <span class="reserve-time-remain">240석</span>
+                    <span class="reserve-time-want" th:text = "${theater.movieTime}"></span>
+                    <span class="reserve-time-remain" th:text = "${theater.seats}"></span>
                 </button>
             </div>
-            <div class="reserve-where">1관 2층 </div>
-            <button class="reserve-time-button">
-                <span class="reserve-time-want">08:30</span>
-                <span class="reserve-time-remain">130석</span>
-            </button>
-            <button class="reserve-time-button">
-                <span class="reserve-time-want">15:10</span>
-                <span class="reserve-time-remain">200석</span>
-            </button>
-            <button class="reserve-time-button">
-                <span class="reserve-time-want">21:20</span>
-                <span class="reserve-time-remain">220석</span>
-            </button>
+            </div>
+
+
         </div>
 
         <div>
@@ -120,5 +100,24 @@
     <img src="./image/twojo.png">
 </div>
 <script src="js/ticket.js"></script>
+<script>
+    $(".reserve-date").click(function(){
+
+        $.ajax({
+            url:"findTheaters",
+            type:"POST",
+            contentType: "application/json; charset=UTF-8",
+            data: JSON.stringify({
+                "movieName" : title,
+                "selectedTheater" : selectedTheater,
+                "movieDate" : reserveDate
+            }),
+            success: function(data){
+                $("#theaters").empty();
+                $("theaters").replaceWith(data)
+            },
+        });
+    });
+</script>
 </body>
 </html>
